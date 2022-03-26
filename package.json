@@ -12,6 +12,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "hardhat-compile": "npx hardhat compile",
+    "hardhat-node": "npx hardhat node",
     "hardhat-test": "npx hardhat test"
   },
   "keywords": [

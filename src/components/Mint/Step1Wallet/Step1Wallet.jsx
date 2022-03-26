@@ -19,7 +19,7 @@ const Step1Wallet = () => {
   }, [activatingConnector, connector]);
 
   return (
-    <div>
+    <div className="flex justify-around">
       {
         connectorsData.map(c => {
           const activating = c.connector === activatingConnector;
@@ -27,36 +27,37 @@ const Step1Wallet = () => {
           const disabled = !!activatingConnector || !!error;
 
           return (
-            <button
-              className="px-6 py-4"
-              disabled={disabled}
-              key={c.name}
-              onClick={() => {
-                if(connected) {
-                  deactivate(c.connector);
-                } else {
-                  setActivatingConnector(c.connector);
-                  activate(c.connector, (error) => {
-                    if (error) {
-                      setActivatingConnector(undefined)
-                    }
-                  });
-                }
-              }}
-            >
-              <div className="flex mb-4">
-                <div className="w-1/8">
-                  {activating && <FontAwesomeIcon icon={faSpinner} />}
-                  {connected && <FontAwesomeIcon icon={faUnlockAlt} />}
+            <div key={c.name} className="p-3 grow flex justify-center">
+              <button
+                className="w-1/2 block p-8 border border-gray-100 shadow-xl rounded-xl"
+                disabled={disabled}
+                onClick={() => {
+                  if(connected) {
+                    deactivate(c.connector);
+                  } else {
+                    setActivatingConnector(c.connector);
+                    activate(c.connector, (error) => {
+                      if (error) {
+                        setActivatingConnector(undefined)
+                      }
+                    });
+                  }
+                }}
+              >
+                <div className="grid grid-flow-col grid-cols-3">
+                  <div>
+                    {activating && <FontAwesomeIcon icon={faSpinner} />}
+                    {connected && <FontAwesomeIcon icon={faUnlockAlt} />}
+                  </div>
+                  <div className="col-span-4">
+                    {c.name}
+                  </div>
+                  <div>
+                    <img src={c.icon} width={64} height={64} />
+                  </div>
                 </div>
-                <div className="w-6/8">
-                  {c.name}
-                </div>
-                <div className="w-1/8">
-                  <img src={c.icon} width={64} height={64} />
-                </div>
-              </div>
-            </button>
+              </button>
+            </div>
           )
         })
       }

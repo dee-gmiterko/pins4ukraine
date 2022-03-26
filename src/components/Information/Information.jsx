@@ -11,7 +11,8 @@ ${process.env.GATSBY_SMART_CONTRACT || "unknown"}
 
 const Information = () => {
   return (
-    <div>
+    <div className="container mx-auto p-3">
+      <h2>More information</h2>
       <ReactMarkdown>{text}</ReactMarkdown>
     </div>
   );

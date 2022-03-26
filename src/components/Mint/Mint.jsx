@@ -12,7 +12,7 @@ import Step3Mint from "./Step3Mint/Step3Mint";
 const Mint = () => {
   const { library, chainId, active, error } = useWeb3React();
 
-  const [tokenPrice, setTokenPrice] = useState(undefined);
+  const tokenPrice = 0.05;
   const [firstOpenDesign, setFirstOpenDesign] = useState(undefined);
   const [lastOpenDesign, setLastOpenDesign] = useState(undefined);
   const [mintOpenSince, setMintOpenSince] = useState(undefined);
@@ -22,34 +22,50 @@ const Mint = () => {
 
   useEffect(() => {
     const initSmartContractState = async () => {
-      const signer = library.getSigner();
-      const contract = new ethers.Contract(contract_address, Pin4UkraineContract.abi, signer);
+      const provider = new ethers.providers.JsonRpcProvider();
+      const contract = new ethers.Contract(process.env.GATSBY_SMART_CONTRACT, Pin4UkraineContract.abi, provider);
 
-      const tokenPricePromise = contract.TOKEN_PRICE();
       const firstOpenDesignPromise = contract.firstOpenDesign();
       const lastOpenDesignPromise = contract.lastOpenDesign();
       const mintOpenSincePromise = contract.mintOpenSince();
 
-      const [tokenPrice, firstOpenDesign, lastOpenDesign, mintOpenSince] = await Promise.all(
-        [tokenPricePromise, firstOpenDesignPromise, lastOpenDesignPromise, mintOpenSince]
+      const [firstOpenDesign, lastOpenDesign, mintOpenSince] = await Promise.all(
+        [firstOpenDesignPromise, lastOpenDesignPromise, mintOpenSincePromise]
       );
 
-      setTokenPrice(tokenPrice);
-      setFirstOpenDesign(firstOpenDesign);
-      setLastOpenDesign(lastOpenDesign);
-      setMintOpenSincePromise(mintOpenSincePromise);
+      setFirstOpenDesign(firstOpenDesign.toNumber());
+      setDesign(firstOpenDesign.toNumber());
+      setLastOpenDesign(lastOpenDesign.toNumber());
+      setMintOpenSince(mintOpenSince.toNumber());
     }
     initSmartContractState().catch(setMintError);
   }, []);
 
+  useEffect(() => {
+    if(chainId && chainId !== parseInt(process.env.GATSBY_CHAIN_ID, 10)) {
+      setMintError("Incorrect chain id!")
+    }
+  }, [chainId]);
+
   return (
-    <div>
-      <p>Connect wallet</p>
+    <div className="container mx-auto p-3 flex-column">
+
+      <h3 className="text-xl">1. Connect wallet</h3>
+      <p>You need na crypto wallet to support Ukraine in this way and to recieve a pin. <a href="https://metamask.io/" target="_blank">MetaMask</a> is the most commonly used one.</p>
       <Step1Wallet />
-      <p>Select pin you want to recieve</p>
+
+      <h3 className="text-xl mt-8">2. Select pin design</h3>
+      <p>There is no difference between them, pick the one you like</p>
       <Step2Design design={design} setDesign={setDesign} firstOpenDesign={firstOpenDesign} lastOpenDesign={lastOpenDesign} />
-      <p>Support</p>
+
+      <h3 className="text-xl mt-8">3. Support</h3>
+      <p>You can choose any amount to support Ukraine. Minimal amount to recieve an NFT pin is {tokenPrice}</p>
       <Step3Mint design={design} tokenPrice={tokenPrice} />
+      {mintError && (
+        <p className="color-red-600">
+          {mintError.toString()}
+        </p>
+      )}
     </div>
   );
 }

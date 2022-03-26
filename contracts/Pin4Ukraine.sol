@@ -11,7 +11,7 @@ contract Pin4Ukraine is ERC1155, Ownable {
     uint256 public lastOpenDesign = 0;
     uint256 public mintOpenSince = 0;
 
-    constructor() ERC1155("https://pin4Ukraine.com/assets/{id}.json") {}
+    constructor() ERC1155("https://pin4ukraine.com/assets/{id}.json") {}
 
     function mint(uint256 id) external payable {
         require(mintOpenSince > 0 && firstOpenDesign > 0 && lastOpenDesign > 0, "MINT_NOT_CONFIGURED");
@@ -33,11 +33,10 @@ contract Pin4Ukraine is ERC1155, Ownable {
         mintOpenSince = _mintOpenSince;
     }
 
-    function support() external {
+    function sendSupport() external {
          uint256 currentBalance = address(this).balance;
-         payable(0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa).transfer(currentBalance * 20 / 100);
-         payable(0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa).transfer(currentBalance * 20 / 100);
-         payable(0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa).transfer(currentBalance * 15 / 100);
-         payable(0xaAaAaAaaAaAaAaaAaAAAAAAAAaaaAaAaAaaAaaAa).transfer(address(this).balance);
+         payable(0x02f1c4C93AFEd946Cce5Ad7D34354A150bEfCFcF).transfer(currentBalance * 30 / 100);
+         payable(0x02f1c4C93AFEd946Cce5Ad7D34354A150bEfCFcF).transfer(currentBalance * 20 / 100);
+         payable(0x02f1c4C93AFEd946Cce5Ad7D34354A150bEfCFcF).transfer(address(this).balance);
     }
 }
