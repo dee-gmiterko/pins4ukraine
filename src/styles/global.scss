@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'Trueno';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url(../fonts/truenorg.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Trueno';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100;
+  src: url(../fonts/truenosbd.otf) format('opentype');
+}
+
+html {
+  background-color: #003039;
+  background-image: url(../images/background.png);
+  background-position: -100px -180px;
+}
+
+html, body, #___gatsby, #gatsby-focus-wrapper, #root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p, button {
+  font-family: "Trueno";
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.navigate-enter {
+  opacity: 0.01;
+}
+
+.navigate-enter.navigate-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.navigate-leave {
+  opacity: 1;
+}
+
+.navigate-leave.navigate-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

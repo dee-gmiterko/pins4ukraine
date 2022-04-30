@@ -18,6 +18,22 @@ const Step1Wallet = () => {
     }
   }, [activatingConnector, connector]);
 
+  const mint = async () => {
+    setMinting(true);
+    try {
+
+      const signer = library.getSigner();
+      const contract = new ethers.Contract(process.env.GATSBY_SMART_CONTRACT, Pin4UkraineContract.abi, signer);
+
+      const transaction = await contract.mint(design, { value: ethers.utils.parseEther(mintPrice) });
+      await transaction.wait();
+
+    } catch (err) {
+      setMintMessage(err.toString());
+    }
+    setMinting(false);
+  };
+
   return (
     <div className="flex justify-around">
       {
@@ -66,50 +82,3 @@ const Step1Wallet = () => {
 };
 
 export default Step1Wallet;
-
-// TODO
-/*
-
-import React from 'react';
-import { useWeb3React } from '@web3-react/core';
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-
-import { useEagerConnect } from '../utils/connectors';
-
-const Wallet = () => {
-  const context = useWeb3React();
-  const { account, active, error } = context;
-
-  // handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
-  useEagerConnect();
-
-  var walletButton;
-  if (error) {
-    walletButton = (
-      <div className="bg-red-500 text-black font-bold py-4 px-6 rounded">
-        Error: {error.toString()}
-      </div>
-    );
-  } else if (active) {
-    walletButton = (
-      <AnchorLink className="bg-white-500 text-black font-bold py-4 px-6 rounded" to="/wallet" title="Connect wallet">
-        {account}
-      </AnchorLink>
-    );
-  } else {
-    walletButton = (
-      <AnchorLink className="bg-blue-500 hover:bg-red-700 text-white font-bold py-4 px-6 rounded" to="/wallet" title="Connect wallet">
-        Connect wallet
-      </AnchorLink>
-    );
-  }
-
-  return (
-    <div className="fixed top-5 left-5 w-80">
-      {walletButton}
-    </div>
-  )
-}
-
-export default Wallet;
-*/

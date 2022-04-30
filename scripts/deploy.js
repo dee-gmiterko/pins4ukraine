@@ -15,11 +15,11 @@ async function main() {
 
   // We get the contract to deploy
   const Pin4Ukraine = await hre.ethers.getContractFactory("Pin4Ukraine");
-  const pin4ukraine = await Pin4Ukraine.deploy();
+  const pins4ukraine = await Pin4Ukraine.deploy();
 
-  await pin4ukraine.deployed();
+  await pins4ukraine.deployed();
 
-  console.log("Pin4Ukraine deployed to:", pin4ukraine.address);
+  console.log("Pin4Ukraine deployed to:", pins4ukraine.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

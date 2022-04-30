@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import logo from "../images/logo.svg";
-import Layout from "../components/Layout/Layout";
+import logo from "../../images/logo.svg";
+import Layout from "../../components/Layout/Layout";
 
-const IndexPage = ({ data: { site }, pageContext }) => {
+const MintDesignPage = ({ data: { site }, pageContext }) => {
   return (
     <Layout siteMetadata={site.siteMetadata}>
       <>
@@ -12,16 +12,11 @@ const IndexPage = ({ data: { site }, pageContext }) => {
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
-        <p>Pins for Ukraine is an NFT project designed to help Ukraine in the war against Russia. As effectively as possible.</p>
+        <h2>About</h2>
         <div className="content-box-buttons">
-          <Link to="/mint/amount">
+          <Link to="/mint/confirm">
             <button className="btn primary">
-              Support & Mint
-            </button>
-          </Link>
-          <Link to="/about">
-            <button className="btn">
-              About us
+              Proceed
             </button>
           </Link>
         </div>
@@ -30,10 +25,10 @@ const IndexPage = ({ data: { site }, pageContext }) => {
   )
 };
 
-export default IndexPage;
+export default MintDesignPage;
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query MintDesignQuery {
     site {
       siteMetadata {
         author

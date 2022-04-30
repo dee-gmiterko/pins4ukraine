@@ -3,11 +3,9 @@ import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-import Pin4UkraineContract from '../../artifacts/contracts/Pin4Ukraine.sol/Pin4Ukraine.json';
-
-import Step1Wallet from "./Step1Wallet/Step1Wallet";
-import Step2Design from "./Step2Design/Step2Design";
-import Step3Mint from "./Step3Mint/Step3Mint";
+import StepWallet from "./StepWallet/StepWallet";
+import StepDesign from "./StepDesign/StepDesign";
+import StepMint from "./StepMint/StepMint";
 
 const Mint = () => {
   const { library, chainId, active, error } = useWeb3React();
@@ -50,17 +48,18 @@ const Mint = () => {
   return (
     <div className="container mx-auto p-3 flex-column">
 
-      <h3 className="text-xl">1. Connect wallet</h3>
-      <p>You need na crypto wallet to support Ukraine in this way and to recieve a pin. <a href="https://metamask.io/" target="_blank">MetaMask</a> is the most commonly used one.</p>
-      <Step1Wallet />
+      <h3 className="text-xl mt-8">1. Support</h3>
+      <p>You can choose any amount to support Ukraine. Minimal amount to recieve an NFT pin is {tokenPrice}</p>
+      <StepMint design={design} tokenPrice={tokenPrice} />
 
       <h3 className="text-xl mt-8">2. Select pin design</h3>
       <p>There is no difference between them, pick the one you like</p>
-      <Step2Design design={design} setDesign={setDesign} firstOpenDesign={firstOpenDesign} lastOpenDesign={lastOpenDesign} />
+      <StepDesign design={design} setDesign={setDesign} firstOpenDesign={firstOpenDesign} lastOpenDesign={lastOpenDesign} />
 
-      <h3 className="text-xl mt-8">3. Support</h3>
-      <p>You can choose any amount to support Ukraine. Minimal amount to recieve an NFT pin is {tokenPrice}</p>
-      <Step3Mint design={design} tokenPrice={tokenPrice} />
+      <h3 className="text-xl">3. Connect wallet</h3>
+      <p>You need na crypto wallet to support Ukraine in this way and to recieve a pin. <a href="https://metamask.io/" target="_blank">MetaMask</a> is the most commonly used one.</p>
+      <StepWallet />
+
       {mintError && (
         <p className="color-red-600">
           {mintError.toString()}

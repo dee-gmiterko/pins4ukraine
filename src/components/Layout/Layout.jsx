@@ -1,28 +1,28 @@
 import React from "react";
-import { Web3ReactProvider } from '@web3-react/core';
-import { Web3Provider } from "@ethersproject/providers";
+import { ToastContainer } from 'react-toastify';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import SEO from "../SEO/SEO";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+// TODO import Header from "../Header/Header";
+// import Footer from "../Footer/Footer";
 
-function getLibrary(provider) {
-  return new Web3Provider(provider);
-}
+// <TransitionGroup>
+//   <CSSTransition key={title || "index"} timeout={500} classNames="navigate">
 
-const Layout = ({ title, siteMetadata, connectWallet, children }) => {
+const Layout = ({ title, siteMetadata, children }) => {
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <main>
-        <SEO
-          title={title}
-          siteMetadata={siteMetadata}
-        />
-        <Header siteMetadata={siteMetadata} />
+    <div id="root">
+      <SEO
+        title={title}
+        siteMetadata={siteMetadata}
+      />
+      {/* <Header siteMetadata={siteMetadata} /> */}
+      <main className="content-box">
         { children }
-        <Footer siteMetadata={siteMetadata} />
       </main>
-    </Web3ReactProvider>
+      {/* <Footer siteMetadata={siteMetadata} /> */}
+      <ToastContainer />
+    </div>
   );
 }
 

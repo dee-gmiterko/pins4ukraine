@@ -1,0 +1,78 @@
+$color-light: #ffffff;
+$color-primary: #fbb03b;
+$color-dark: #00262f;
+
+$b-width: 8px;
+
+.content-box {
+  position: relative;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 2rem;
+  border: $b-width solid $color-dark;
+  min-height: 30%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1 * $b-width - 25px; right: -1 * $b-width; bottom: -1 * $b-width + 25px; left: -1 * $b-width;
+    background: $color-dark;
+    border-radius: 2rem;
+    border: $b-width solid $color-dark;
+    z-index: -1;
+  }
+}
+
+.btn {
+  padding: 1rem;
+  position: relative;
+  background: white;
+  border-radius: 2rem;
+  border: $b-width solid $color-dark;
+  display: block;
+  cursor: pointer;
+
+  &.primary {
+    background: $color-primary;
+  }
+}
+
+.content-box-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  a {
+    display: block;
+
+    img {
+      width: 300px;
+      margin-top: (300px * 0.63 * -0.7);
+      margin-top: calc((300px * 0.63 * -0.7) - 1rem);
+    }
+  }
+}
+
+.content-box-buttons {
+  margin-bottom: -4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  a {
+    flex-grow: 1;
+    margin: 0 1rem;
+    display: block;
+
+    button {
+      width: 100%;
+    }
+  }
+}

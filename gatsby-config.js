@@ -7,11 +7,11 @@ if (process.env.ENVIRONMENT !== "production") {
 
 module.exports = {
   siteMetadata: {
-    title: `Timeless NFT`,
-    description: `Own a piece of time.`,
+    title: `Pins for Ukraine`,
+    description: `Use your spare ETH to support a meaningful cause and get an NFT in return`,
     author: `Timeless`,
-    siteUrl: `https://timeless.com/`,
-    keywords: ['Timeless', 'NFT'],
+    siteUrl: `https://pins4ukraine.com`,
+    keywords: ['Pins', 'Pin', 'Ukraine', 'Support', 'Donate', 'NFT'],
   },
   plugins: [
     {
@@ -28,36 +28,36 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Dee Gmiterko`,
-        short_name: `Dee Gmiterko`,
+        name: `Pins for Ukraine`,
+        short_name: `pins4ukraine`,
         start_url: `/`,
-        background_color: `#38174A`,
-        theme_color: `#E0C65D`,
+        background_color: `#003039`,
+        theme_color: `#fbb03b`,
         display: `minimal-ui`,
         icon: `src/images/icon.png`,
       },
     },
     `gatsby-plugin-gatsby-cloud`,
-    {
-      resolve: `gatsby-plugin-facebook-multi-pixels`,
-      options: [
-        {
-          dev: false,
-          alias: 'main-pixel',
-          pixelId: '928689911405331',
-          viewContent: true,
-          pageView: true,
-        },
-      ],
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: [
-          "G-M9GYEZ2DVM",
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-facebook-multi-pixels`,
+    //   options: [
+    //     {
+    //       dev: false,
+    //       alias: 'main-pixel',
+    //       pixelId: '928689911405331',
+    //       viewContent: true,
+    //       pageView: true,
+    //     },
+    //   ],
+    // },
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     trackingIds: [
+    //       "G-M9GYEZ2DVM",
+    //     ],
+    //   },
+    // },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-anchor-links`,

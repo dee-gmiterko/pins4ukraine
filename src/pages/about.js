@@ -3,25 +3,25 @@ import { graphql, Link } from "gatsby";
 import logo from "../images/logo.svg";
 import Layout from "../components/Layout/Layout";
 
-const IndexPage = ({ data: { site }, pageContext }) => {
+const AboutPage = ({ data: { site }, pageContext }) => {
   return (
-    <Layout siteMetadata={site.siteMetadata}>
+    <Layout title="About" siteMetadata={site.siteMetadata}>
       <>
         <div className="content-box-logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
-        <p>Pins for Ukraine is an NFT project designed to help Ukraine in the war against Russia. As effectively as possible.</p>
+        <h2>About</h2>
         <div className="content-box-buttons">
           <Link to="/mint/amount">
             <button className="btn primary">
               Support & Mint
             </button>
           </Link>
-          <Link to="/about">
+          <Link to="/">
             <button className="btn">
-              About us
+              And back
             </button>
           </Link>
         </div>
@@ -30,10 +30,10 @@ const IndexPage = ({ data: { site }, pageContext }) => {
   )
 };
 
-export default IndexPage;
+export default AboutPage;
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query AboutQuery {
     site {
       siteMetadata {
         author
