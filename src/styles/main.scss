@@ -7,11 +7,13 @@ $b-width: 8px;
 .content-box {
   position: relative;
   padding: 2rem;
-  margin-bottom: 2rem;
+  margin-top: (300px * 0.63 * 0.7);
+  margin-bottom: 3rem;
   background: white;
   border-radius: 2rem;
   border: $b-width solid $color-dark;
   min-height: 30%;
+  max-width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -53,8 +55,7 @@ $b-width: 8px;
 
     img {
       width: 300px;
-      margin-top: (300px * 0.63 * -0.7);
-      margin-top: calc((300px * 0.63 * -0.7) - 1rem);
+      margin-top: (300px * 0.63 * -0.7) - 16px;
     }
   }
 }
@@ -73,6 +74,35 @@ $b-width: 8px;
 
     button {
       width: 100%;
+    }
+  }
+}
+
+.slider-container {
+  margin-bottom: 2rem;
+}
+
+.design-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .design {
+    position: relative;
+    &.design-selected::before {
+      content: "";
+      position: absolute;
+      top: 1rem; right: 1rem; bottom: 1rem; left: 1rem;
+      border: 10px solid $color-primary;
+      transform: rotateZ(5deg);
+    }
+  }
+}
+
+.confirm {
+  .confirm-reward {
+    img {
+      width: 200px;
     }
   }
 }

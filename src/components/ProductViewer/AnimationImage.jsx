@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledImage = styled.img`
   position: absolute;
@@ -8,6 +8,12 @@ const StyledImage = styled.img`
   touch-action: none;
   cursor: inherit;
   -webkit-user-drag: none;
+  ${(props) =>
+    css`
+    width: ${props.width}px;
+    height: ${props.height}px;
+    `
+  }
 `;
 
 const AnimationImage = ({ src, isVisible, width, height }) => {
@@ -17,6 +23,8 @@ const AnimationImage = ({ src, isVisible, width, height }) => {
       alt="Rotating object"
       src={src}
       style={{ opacity: `${d}` }}
+      width={width}
+      height={height}
     ></StyledImage>
   );
 };

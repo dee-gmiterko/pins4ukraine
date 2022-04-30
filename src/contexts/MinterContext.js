@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
+import { navigate } from "gatsby";
 import { ethers } from "ethers";
+import axios from "axios";
 import moment from "moment";
 import { useWeb3React } from '@web3-react/core';
 import { toast } from 'react-toastify';
@@ -15,6 +17,7 @@ export const MinterProvider = ({ children }) => {
   const provider = library ? library.getSigner() : new ethers.providers.JsonRpcProvider();
   const contract = new ethers.Contract(process.env.GATSBY_SMART_CONTRACT, Pins4UkraineContract.abi, provider);
 
+  const [loading, setLoading] = useState(true);
   const tokenPriceInitial = ethers.utils.parseEther("0.04");
   const tokenPriceIncrease = ethers.utils.parseEther("0.01");
   const increaseRate = 259200; // 3 days
@@ -25,13 +28,18 @@ export const MinterProvider = ({ children }) => {
   const [mintOpenUntil, setMintOpenUntil] = useState(undefined);
   const [nextIncreaseIn, setNextIncreaseIn] = useState(undefined);
   const [nextIncreaseTimeout, setNextIncreaseTimeout] = useState(undefined);
+  const [estimatedGas, setEstimatedGas] = useState(ethers.BigNumber.from("0"));
+  const [gasPrice, setGasPrice] = useState(ethers.BigNumber.from("0"));
 
   const [amount, setAmount] = useState(0);
   const [design, setDesign] = useState(0);
+  const [minting, setMinting] = useState(false);
+
+  const rewardDeserved = amount && ethers.utils.parseEther(amount.toString()) >= tokenPrice;
+  const estimatedGasPrice = estimatedGas.mul(gasPrice);
 
   useEffect(() => {
     const initSmartContractState = async () => {
-
       const firstOpenDesignPromise = contract.firstOpenDesign();
       const lastOpenDesignPromise = contract.lastOpenDesign();
       const mintOpenSincePromise = contract.mintOpenSince();
@@ -66,6 +74,7 @@ export const MinterProvider = ({ children }) => {
       }
 
       calculateIncrease();
+      setLoading(false);
     }
     initSmartContractState().catch(err => {
       toast.error(parseError(err));
@@ -78,11 +87,67 @@ export const MinterProvider = ({ children }) => {
     }
   }, [chainId]);
 
+  useEffect(() => {
+    const initEstimatedGas = async () => {
+      if(rewardDeserved) {
+        setEstimatedGas(await contract.estimateGas.mint(design, { value: ethers.utils.parseEther(amount) }));
+      } else {
+        setEstimatedGas(ethers.BigNumber.from("21055"));
+      }
+    }
+    initEstimatedGas().catch(err => {
+      toast.error(parseError(err));
+    });
+  }, [rewardDeserved]);
+
+  useEffect(() => {
+    const initGasPrice = async () => {
+      const gasPriceResponse = await axios.get("https://ethergas.io/standard");
+      const gasPriceGwei = ethers.BigNumber.from(gasPriceResponse.data);
+      const gasPrice = gasPriceGwei.mul(ethers.BigNumber.from("1000000000"));
+      setGasPrice(gasPrice);
+    }
+
+    const handleGasPrice = () => {
+      initGasPrice().catch(err => {
+        console.warning(parseError(err));
+      });
+    }
+
+    const interval = setInterval(handleGasPrice, 20000);
+    handleGasPrice();
+    return () => {clearInterval(interval)};
+  }, []);
+
+  const mint = async () => {
+    setMinting(true);
+    try {
+      if(rewardDeserved) {
+        const transaction = await contract.mint(design, { value: ethers.utils.parseEther(amount) });
+        await transaction.wait();
+
+      } else {
+        const signer = library.getSigner();
+        const transaction = await signer.sendTransaction({
+          to: process.env.GATSBY_SMART_CONTRACT,
+          value: ethers.utils.parseEther(amount)
+        });
+        await transaction.wait();
+      }
+
+      navigate("/mint/success");
+    } catch (err) {
+      toast.error(parseError(err));
+    }
+    setMinting(false);
+  };
+
   return (
     <MinterContext.Provider
       value={{
         contract,
 
+        loading,
         tokenPrice,
         increaseRate,
         tokenPriceIncrease,
@@ -91,11 +156,16 @@ export const MinterProvider = ({ children }) => {
         mintOpenUntil,
         mintOpenSince,
         nextIncreaseIn,
+        estimatedGasPrice,
 
         amount,
         setAmount,
         design,
         setDesign,
+        minting,
+        rewardDeserved,
+
+        mint,
       }}
     >
       {children}

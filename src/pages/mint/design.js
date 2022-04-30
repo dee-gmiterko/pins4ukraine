@@ -2,6 +2,8 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import logo from "../../images/logo.svg";
 import Layout from "../../components/Layout/Layout";
+import Step2Design from "../../components/Step2Design/Step2Design";
+import useMinter from "../../hooks/useMinter";
 
 const MintDesignPage = ({ data: { site }, pageContext }) => {
   return (
@@ -12,8 +14,13 @@ const MintDesignPage = ({ data: { site }, pageContext }) => {
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
-        <h2>About</h2>
+        <Step2Design />
         <div className="content-box-buttons">
+          <Link to="/mint/amount">
+            <button className="btn">
+              Back
+            </button>
+          </Link>
           <Link to="/mint/confirm">
             <button className="btn primary">
               Proceed

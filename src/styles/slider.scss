@@ -12,7 +12,9 @@
 }
 .slick-slider {
 	position: relative;
-	display: block;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	box-sizing: border-box;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -101,6 +103,29 @@
 		border: 1px solid transparent;
 	}
 }
-.slick-arrow.slick-hidden {
-	display: none;
+.slick-arrow {
+	background: none;
+	border: none;
+	font-size: 0;
+	&::after {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50px;
+		height: 50px;
+		background: #003039;
+		color: #fbb03b;
+		border-radius: 50%;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+	&.slick-prev::after {
+		content: "<";
+	}
+	&.slick-next::after {
+		content: ">";
+	}
+	&.slick-hidden {
+		display: none;
+	}
 }

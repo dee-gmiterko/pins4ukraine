@@ -2,10 +2,10 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import logo from "../../images/logo.svg";
 import Layout from "../../components/Layout/Layout";
-import Step1Amount from "../../components/Step1Amount/Step1Amount";
+import Step2Design from "../../components/Step2Design/Step2Design";
 import useMinter from "../../hooks/useMinter";
 
-const MintAmountPage = ({ data: { site }, pageContext }) => {
+const MintSuccessPage = ({ data: { site }, pageContext }) => {
   return (
     <Layout siteMetadata={site.siteMetadata}>
       <>
@@ -14,23 +14,16 @@ const MintAmountPage = ({ data: { site }, pageContext }) => {
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
-        <Step1Amount />
-        <div className="content-box-buttons">
-          <Link to="/mint/design">
-            <button className="btn primary">
-              Proceed
-            </button>
-          </Link>
-        </div>
+        <h2>Supported</h2>
       </>
     </Layout>
   )
 };
 
-export default MintAmountPage;
+export default MintSuccessPage;
 
 export const pageQuery = graphql`
-  query MintAmountQuery {
+  query MintSuccessQuery {
     site {
       siteMetadata {
         author
