@@ -8,13 +8,15 @@ import useMinter from "../../hooks/useMinter";
 const MintAmountPage = ({ data: { site }, pageContext }) => {
   return (
     <Layout siteMetadata={site.siteMetadata}>
-      <>
-        <div className="content-box-logo">
+      <main className="content-box mint">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
-        <Step1Amount />
+        <div className="p2">
+          <Step1Amount />
+        </div>
         <div className="content-box-buttons">
           <Link to="/mint/design">
             <button className="btn primary">
@@ -22,7 +24,7 @@ const MintAmountPage = ({ data: { site }, pageContext }) => {
             </button>
           </Link>
         </div>
-      </>
+      </main>
     </Layout>
   )
 };

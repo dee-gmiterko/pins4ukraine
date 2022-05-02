@@ -1,54 +1,49 @@
 import React, { useState } from "react";
+import { navigate } from "gatsby";
 import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import ProductViewer from "../ProductViewer/ProductViewer";
+import styled from 'styled-components';
 import Slider from "react-slick";
 import useMinter from "../../hooks/useMinter";
+import designNames from "../../designNames.json";
+
+const ActionPrompt = styled.p`
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+`;
 
 const Step2Design = () => {
-  const { design, setDesign, firstOpenDesign, lastOpenDesign } = useMinter();
+  const { design, setDesign, firstOpenDesign, lastOpenDesign, rewardDeserved } = useMinter();
 
   const designIds = firstOpenDesign > 0 && lastOpenDesign > 0 && Array.from({ length: lastOpenDesign - firstOpenDesign + 1 }, (_, i) => i+1) || [];
 
-  var settings = {
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: true,
-    variableWidth: true,
-  };
-
-  console.log(design);
+  const setDesignNavigate = (designId) => {
+    setDesign(designId);
+    navigate("/mint/confirm");
+  }
 
   return (
     <div>
-      <div className="slider-container">
-        <Slider {...settings}>
-          {designIds.map((designId, index) => (
-            <div key={index}>
-              <div className="design-container">
-                <div className={(design === designId) ? "design design-selected": "design"}>
-                  <ProductViewer
-                    imagesBaseUrl={`/assets/${designId}`}
-                    imagesCount={16}
-                    imagesFiletype="png"
-                    width={400}
-                    height={440}
-                  />
-                </div>
-                <button
-                  onClick={setDesign.bind(this, designId)}
-                  className={(design === designId) ? "btn primary": "btn"}
-                >
-                  Select
-                </button>
-              </div>
-            </div>
-          ))}
-        </Slider>
+      <ActionPrompt>Choose your reward.</ActionPrompt>
+      <div className="designs-container">
+        {designIds.map((designId, index) => (
+          <button
+            onClick={setDesignNavigate.bind(this, designId)}
+            className="design"
+            disabled={!rewardDeserved}
+          >
+            <ProductViewer
+              imagesBaseUrl={`/assets/${designId}`}
+              imagesCount={16}
+              imagesFiletype="png"
+            />
+            {designNames[designId.toString()]}
+          </button>
+        ))}
       </div>
     </div>
   );

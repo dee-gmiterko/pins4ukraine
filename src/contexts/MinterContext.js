@@ -40,6 +40,7 @@ export const MinterProvider = ({ children }) => {
 
   useEffect(() => {
     const initSmartContractState = async () => {
+      /*
       const firstOpenDesignPromise = contract.firstOpenDesign();
       const lastOpenDesignPromise = contract.lastOpenDesign();
       const mintOpenSincePromise = contract.mintOpenSince();
@@ -47,6 +48,10 @@ export const MinterProvider = ({ children }) => {
 
       const [firstOpenDesign, lastOpenDesign, mintOpenSince, mintOpenUntil] = await Promise.all(
         [firstOpenDesignPromise, lastOpenDesignPromise, mintOpenSincePromise, mintOpenUntilPromise]
+      );
+      */
+      const [firstOpenDesign, lastOpenDesign, mintOpenSince, mintOpenUntil] = await Promise.all(
+        [ethers.BigNumber.from("1"), ethers.BigNumber.from("6"), ethers.BigNumber.from("1651505561"), ethers.BigNumber.from("0")]
       );
 
       setFirstOpenDesign(firstOpenDesign.toNumber());
@@ -110,7 +115,7 @@ export const MinterProvider = ({ children }) => {
 
     const handleGasPrice = () => {
       initGasPrice().catch(err => {
-        console.warning(parseError(err));
+        console.error(parseError(err));
       });
     }
 

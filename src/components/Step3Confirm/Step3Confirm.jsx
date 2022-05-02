@@ -56,37 +56,34 @@ const Step3Confirm = () => {
               const disabled = !!activatingConnector || !!error;
 
               return (
-                <div key={c.name} className="p-3 grow flex justify-center">
-                  <button
-                    className="w-1/2 block p-8 border border-gray-100 shadow-xl rounded-xl"
-                    disabled={disabled}
-                    onClick={() => {
-                      if(connected) {
-                        deactivate(c.connector);
-                      } else {
-                        setActivatingConnector(c.connector);
-                        activate(c.connector, (error) => {
-                          if (error) {
-                            setActivatingConnector(undefined)
-                          }
-                        });
-                      }
-                    }}
-                  >
-                    <div className="grid grid-flow-col grid-cols-3">
-                      <div>
-                        {activating && <FontAwesomeIcon icon={faSpinner} />}
-                        {connected && <FontAwesomeIcon icon={faUnlockAlt} />}
-                      </div>
-                      <div className="col-span-4">
-                        {c.name}
-                      </div>
-                      <div>
-                        <img src={c.icon} width={64} height={64} />
-                      </div>
-                    </div>
-                  </button>
-                </div>
+                <button
+                  key={c.name}
+                  className="connector"
+                  disabled={disabled}
+                  onClick={() => {
+                    if(connected) {
+                      deactivate(c.connector);
+                    } else {
+                      setActivatingConnector(c.connector);
+                      activate(c.connector, (error) => {
+                        if (error) {
+                          setActivatingConnector(undefined)
+                        }
+                      });
+                    }
+                  }}
+                >
+                  <div>
+                    {activating && <FontAwesomeIcon icon={faSpinner} />}
+                    {connected && <FontAwesomeIcon icon={faUnlockAlt} />}
+                  </div>
+                  <div className="col-span-4">
+                    {c.name}
+                  </div>
+                  <div>
+                    <img src={c.icon} width={64} height={64} />
+                  </div>
+                </button>
               )
             })
           }

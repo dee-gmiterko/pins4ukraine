@@ -6,8 +6,8 @@ import Layout from "../components/Layout/Layout";
 const IndexPage = ({ data: { site }, pageContext }) => {
   return (
     <Layout siteMetadata={site.siteMetadata}>
-      <>
-        <div className="content-box-logo">
+      <main className="content-box">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
@@ -25,7 +25,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
             </button>
           </Link>
         </div>
-      </>
+      </main>
     </Layout>
   )
 };

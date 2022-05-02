@@ -12,24 +12,24 @@ const MintConfirmPage = ({ data: { site }, pageContext }) => {
 
   return (
     <Layout siteMetadata={site.siteMetadata}>
-      <>
-        <div className="content-box-logo">
+      <main className="content-box mint">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
         <Step3Confirm />
         <div className="content-box-buttons">
-          <Link to="/mint/design">
+          <Link to="/mint/amount">
             <button className="btn">
               Back
             </button>
           </Link>
-          <button className="btn primary" onClick={mint} disabled={!active}>
+          <button className="btn primary flex-grow" onClick={mint} disabled={!active}>
             Support
           </button>
         </div>
-      </>
+      </main>
     </Layout>
   )
 };

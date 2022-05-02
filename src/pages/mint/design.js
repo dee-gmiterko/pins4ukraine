@@ -6,28 +6,27 @@ import Step2Design from "../../components/Step2Design/Step2Design";
 import useMinter from "../../hooks/useMinter";
 
 const MintDesignPage = ({ data: { site }, pageContext }) => {
+  const { rewardDeserved } = useMinter();
+
   return (
     <Layout siteMetadata={site.siteMetadata}>
-      <>
-        <div className="content-box-logo">
+      <main className="content-free">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
         <Step2Design />
-        <div className="content-box-buttons">
-          <Link to="/mint/amount">
-            <button className="btn">
-              Back
-            </button>
-          </Link>
-          <Link to="/mint/confirm">
-            <button className="btn primary">
-              Proceed
-            </button>
-          </Link>
-        </div>
-      </>
+        {!rewardDeserved && (
+          <div className="content-free-buttons">
+            <Link to="/mint/confirm">
+              <button className="btn">
+                No reward
+              </button>
+            </Link>
+          </div>
+        )}
+      </main>
     </Layout>
   )
 };

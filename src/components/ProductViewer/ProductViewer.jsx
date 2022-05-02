@@ -4,17 +4,10 @@ import AnimationImage from "./AnimationImage";
 
 const StyledDiv = styled.div`
   position: relative;
-  border: none;
-  padding: 5px;
-  display: inline-block;
+  width: 100%;
+  padding-top: 125%;
   user-select: none;
   touch-action: none;
-  ${(props) =>
-    css`
-    width: ${props.width}px;
-    height: ${props.height}px;
-    `
-  }
 `;
 
 const ProductViewer = ({
@@ -22,8 +15,6 @@ const ProductViewer = ({
   imagesBaseUrl,
   imagesFiletype,
   imageFilenamePrefix,
-  width = 150,
-  height = 150,
   imageInitialIndex = 0,
 }) => {
   const elementRef = useRef(null);
@@ -67,14 +58,10 @@ const ProductViewer = ({
     <StyledDiv
       ref={elementRef}
       onPointerMove={onMouseMove}
-      width={width}
-      height={height}
     >
       {imageSources.map((s, index) => (
         <AnimationImage
           src={s.src}
-          width={width}
-          height={height}
           isVisible={index === selectedImageIndex}
           key={index}
         ></AnimationImage>

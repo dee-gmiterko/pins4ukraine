@@ -8,14 +8,14 @@ import useMinter from "../../hooks/useMinter";
 const MintSuccessPage = ({ data: { site }, pageContext }) => {
   return (
     <Layout siteMetadata={site.siteMetadata}>
-      <>
-        <div className="content-box-logo">
+      <main className="content-box mint">
+        <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
         <h2>Supported</h2>
-      </>
+      </main>
     </Layout>
   )
 };

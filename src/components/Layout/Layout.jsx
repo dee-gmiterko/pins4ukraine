@@ -17,9 +17,7 @@ const Layout = ({ title, siteMetadata, children }) => {
         siteMetadata={siteMetadata}
       />
       {/* <Header siteMetadata={siteMetadata} /> */}
-      <main className="content-box">
-        { children }
-      </main>
+      { children }
       {/* <Footer siteMetadata={siteMetadata} /> */}
       <ToastContainer />
     </div>
