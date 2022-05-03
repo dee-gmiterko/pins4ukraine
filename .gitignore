@@ -71,4 +71,5 @@ yarn-error.log
 
 # Hardhat dev files
 /cache
-/src/artifacts
+/src/artifacts/build-info
+/src/artifacts/**/*.dbg.json
