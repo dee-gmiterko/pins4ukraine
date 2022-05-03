@@ -3,18 +3,9 @@ import { navigate } from "gatsby";
 import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import ProductViewer from "../ProductViewer/ProductViewer";
-import styled from 'styled-components';
 import Slider from "react-slick";
 import useMinter from "../../hooks/useMinter";
 import designNames from "../../designNames.json";
-
-const ActionPrompt = styled.p`
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-top: 3rem;
-  margin-bottom: 5rem;
-`;
 
 const Step2Design = () => {
   const { design, setDesign, firstOpenDesign, lastOpenDesign, rewardDeserved } = useMinter();
@@ -28,7 +19,6 @@ const Step2Design = () => {
 
   return (
     <div>
-      <ActionPrompt>Choose your reward.</ActionPrompt>
       <div className="designs-container">
         {designIds.map((designId, index) => (
           <button

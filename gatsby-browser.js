@@ -8,6 +8,7 @@ import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from "@ethersproject/providers";
 import { MinterProvider } from "./src/contexts/MinterContext";
 import { IntlProvider } from 'react-intl';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import './src/styles/reset.scss';
 import './src/styles/global.scss';
@@ -29,4 +30,14 @@ export const wrapRootElement = ({ element }) => {
       </MinterProvider>
     </Web3ReactProvider>
   )
+}
+
+export const wrapPageElement = ({ element, props: {path} }) => {
+  return (
+    <TransitionGroup>
+      <CSSTransition key={path} timeout={300} classNames="navigate">
+        {element}
+      </CSSTransition>
+    </TransitionGroup>
+  );
 }

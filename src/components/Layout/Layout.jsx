@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer } from 'react-toastify';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import SEO from "../SEO/SEO";
 // TODO import Header from "../Header/Header";
 // import Footer from "../Footer/Footer";
 
-// <TransitionGroup>
-//   <CSSTransition key={title || "index"} timeout={500} classNames="navigate">
 
 const Layout = ({ title, siteMetadata, children }) => {
+  const [inProp, setInProp] = useState(false);
+
+  useEffect(() => {
+    const a = () => {
+      setInProp(true);
+    }
+    setInterval(a);
+  }, []);
+
   return (
     <div id="root">
       <SEO
@@ -17,7 +23,9 @@ const Layout = ({ title, siteMetadata, children }) => {
         siteMetadata={siteMetadata}
       />
       {/* <Header siteMetadata={siteMetadata} /> */}
-      { children }
+      <div className="root-container">
+        { children }
+      </div>
       {/* <Footer siteMetadata={siteMetadata} /> */}
       <ToastContainer />
     </div>

@@ -1,12 +1,26 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, navigate } from "gatsby";
 import logo from "../../images/logo.svg";
+import { ethers } from 'ethers';
 import Layout from "../../components/Layout/Layout";
 import Step2Design from "../../components/Step2Design/Step2Design";
 import useMinter from "../../hooks/useMinter";
+import styled from 'styled-components';
+
+const ActionPrompt = styled.p`
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+`;
 
 const MintDesignPage = ({ data: { site }, pageContext }) => {
-  const { rewardDeserved } = useMinter();
+  const { rewardDeserved, missingToReward, tokenPrice, setAmount } = useMinter();
+
+  const matchReward = () => {
+    setAmount(ethers.utils.formatEther(tokenPrice));
+  }
 
   return (
     <Layout siteMetadata={site.siteMetadata}>
@@ -16,12 +30,20 @@ const MintDesignPage = ({ data: { site }, pageContext }) => {
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
+        {rewardDeserved ? (
+          <ActionPrompt>Choose your reward.</ActionPrompt>
+        ) : (
+          <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} to get a pin.</ActionPrompt>
+        )}
         <Step2Design />
         {!rewardDeserved && (
           <div className="content-free-buttons">
+            <button className="btn" onClick={matchReward}>
+              Add {ethers.utils.formatEther(missingToReward)}
+            </button>
             <Link to="/mint/confirm">
               <button className="btn">
-                No reward
+                Continue with no reward
               </button>
             </Link>
           </div>

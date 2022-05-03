@@ -20,17 +20,31 @@ html {
   background-position: -100px -180px;
 }
 
-html, body, #___gatsby, #gatsby-focus-wrapper, #root {
+html, body, #___gatsby, #gatsby-focus-wrapper {
   height: 100%;
+  overflow-x: hidden;
 }
 
 #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
-  max-width: 1000px;
-  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+
+  .root-container {
+    max-width: 1000px;
+    width: 100%;
+  }
+}
+
+h2 {
+  font-family: "Trueno";
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fbb03b;
+  margin-bottom: 1rem;
 }
 
 a {
@@ -38,7 +52,7 @@ a {
   cursor: pointer;
 }
 
-p, button {
+p, button, input, dt, dd {
   font-family: "Trueno";
   font-weight: bold;
   font-size: 1.8rem;
@@ -50,21 +64,21 @@ p {
 }
 
 .navigate-enter {
-  opacity: 0.01;
+  transform: translateX(100vw);
 }
 
 .navigate-enter.navigate-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
 }
 
-.navigate-leave {
-  opacity: 1;
+.navigate-exit {
+  transform: translateX(0);
+  transition: transform 300ms ease-in-out;
 }
 
-.navigate-leave.navigate-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.navigate-exit.navigate-exit-active {
+  transform: translateX(-100vw);
 }
 
 /* hide number spinner */

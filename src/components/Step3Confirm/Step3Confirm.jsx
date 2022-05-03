@@ -7,6 +7,13 @@ import { faSpinner, faUnlockAlt, faWindowClose } from '@fortawesome/free-solid-s
 import { connectorsData } from '../../utils/connectors';
 import useMinter from "../../hooks/useMinter";
 import designNames from "../../designNames.json";
+import styled from "styled-components";
+
+const HorizontalSpacing = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 const Step3Confirm = () => {
   const { connector, activate, deactivate, account, error } = useWeb3React();
@@ -23,31 +30,40 @@ const Step3Confirm = () => {
   return (
     <div className="confirm">
       <div>
-        Overview
+        <h2>Details</h2>
         <dl>
-          <dt>Amount</dt>
-          <dd>
-            {amount} ETH
-          </dd>
-          <dt>Gas price</dt>
-          <dd>
-            {ethers.utils.formatEther(estimatedGasPrice)} ETH
-          </dd>
-          <dt>Reward</dt>
-          <dd>
-            {rewardDeserved ? (
-              <div className="confirm-reward">
-                <img src={`/assets/${design}.png`} alt={designNames[design.toString()]} />
-                <span>{designNames[design.toString()]}</span>
-              </div>
-            ) : (
-              <>No reward</>
-            )}
-          </dd>
+          <HorizontalSpacing>
+            <div>
+              <dt>{rewardDeserved ? <>Reward</> : <>No reward</>}</dt>
+              <dd>
+                {rewardDeserved && (
+                  <div className="confirm-reward">
+                    <img src={`/assets/${design}.png`} alt={designNames[design.toString()]} />
+                    <span>{designNames[design.toString()]}</span>
+                  </div>
+                )}
+              </dd>
+            </div>
+            <div>
+              <HorizontalSpacing>
+                <dt>Amount</dt>
+                <dd>
+                  {amount} ETH
+                </dd>
+              </HorizontalSpacing>
+              <HorizontalSpacing>
+                <dt>Gas price</dt>
+                <dd>
+                  <span alt="Less than">&lt; </span>
+                  {ethers.utils.formatEther(estimatedGasPrice)} ETH
+                </dd>
+              </HorizontalSpacing>
+            </div>
+          </HorizontalSpacing>
         </dl>
       </div>
       <div>
-        <h3>Connect wallet</h3>
+        <h2>Connect wallet</h2>
         <div className="connectors">
           {
             connectorsData.map(c => {
@@ -58,7 +74,7 @@ const Step3Confirm = () => {
               return (
                 <button
                   key={c.name}
-                  className="connector"
+                  className="btn secondary connector"
                   disabled={disabled}
                   onClick={() => {
                     if(connected) {

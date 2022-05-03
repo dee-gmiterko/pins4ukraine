@@ -21,6 +21,10 @@ const AmountInput = styled.input`
   font-weight: bold;
   width: 8rem;
   text-align: right;
+  &:focus {
+    color: #fbb03b;
+    outline: none;
+  }
 `;
 
 const RelevantInfo = styled.strong`

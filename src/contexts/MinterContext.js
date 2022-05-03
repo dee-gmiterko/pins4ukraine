@@ -36,6 +36,7 @@ export const MinterProvider = ({ children }) => {
   const [minting, setMinting] = useState(false);
 
   const rewardDeserved = amount && ethers.utils.parseEther(amount.toString()) >= tokenPrice;
+  const missingToReward = (tokenPrice && amount) ? tokenPrice.sub(ethers.utils.parseEther(amount.toString())) : ethers.BigNumber.from(0);
   const estimatedGasPrice = estimatedGas.mul(gasPrice);
 
   useEffect(() => {
@@ -169,6 +170,7 @@ export const MinterProvider = ({ children }) => {
         setDesign,
         minting,
         rewardDeserved,
+        missingToReward,
 
         mint,
       }}
