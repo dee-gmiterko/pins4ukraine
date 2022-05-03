@@ -12,7 +12,13 @@ import styled from "styled-components";
 const HorizontalSpacing = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
+  @media(max-width: 700px) {
+    div {
+      width: 100%;
+    }
+  }
 `;
 
 const Step3Confirm = () => {
@@ -55,7 +61,7 @@ const Step3Confirm = () => {
                 <dt>Gas price</dt>
                 <dd>
                   <span alt="Less than">&lt; </span>
-                  {ethers.utils.formatEther(estimatedGasPrice)} ETH
+                  {ethers.utils.formatEther(estimatedGasPrice).substring(0, 6)} ETH
                 </dd>
               </HorizontalSpacing>
             </div>

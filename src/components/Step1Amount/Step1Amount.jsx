@@ -10,6 +10,9 @@ const ActionPrompt = styled.p`
   color: #fff;
   font-size: 3.4rem;
   font-weight: bold;
+  @media(max-width: 700px) {
+    font-size: 2rem;
+  }
 `;
 
 const AmountInput = styled.input`
@@ -25,11 +28,20 @@ const AmountInput = styled.input`
     color: #fbb03b;
     outline: none;
   }
+  @media(max-width: 700px) {
+    font-size: 2rem;
+  }
 `;
 
 const RelevantInfo = styled.strong`
   color: #bb8c37;
   margin: 0 6px;
+`;
+
+const MobileBlock = styled.span`
+  @media(max-width: 700px) {
+    display: block;
+  }
 `;
 
 const Step1Amount = () => {
@@ -40,8 +52,10 @@ const Step1Amount = () => {
         <p>Choose your support.</p>
         <ActionPrompt>
           I'm happy to donate
-          <AmountInput className="minter-amount" type="number" value={amount} onChange={e => setAmount(e.target.value)} step={0.01} min={0} />
-          ETH.
+          <MobileBlock>
+            <AmountInput className="minter-amount" type="number" value={amount} onChange={e => setAmount(e.target.value)} step={0.01} min={0} />
+            ETH.
+          </MobileBlock>
         </ActionPrompt>
         <p>
           You have to donate at least <RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo> to get a pin.

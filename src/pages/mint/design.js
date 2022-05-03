@@ -13,6 +13,11 @@ const ActionPrompt = styled.p`
   font-weight: bold;
   margin-top: 3rem;
   margin-bottom: 5rem;
+  @media(max-width: 700px) {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const MintDesignPage = ({ data: { site }, pageContext }) => {

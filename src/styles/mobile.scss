@@ -1,0 +1,59 @@
+@use 'sass:color';
+@import './variables.scss';
+
+@media(max-width: 700px) {
+  p, button, input, dt, dd {
+    font-family: "Trueno";
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+
+  .content-box {
+    margin-top: 0;
+    margin-bottom: 0;
+    background: rgba(256, 256, 256, 0.8);
+    border-radius: 0;
+    border: 0;
+
+    &::before {
+      display: none;
+    }
+
+    .logo {
+      a {
+        img {
+          margin-top: 0;
+        }
+      }
+    }
+
+    &.mint {
+      margin-top: 0;
+      background-color: color.scale($color-dark, $alpha: -20%);
+    }
+
+    &.story {
+
+    }
+  }
+
+  .logo {
+    a {
+      img {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .content-box-buttons {
+    margin-bottom: 0;
+  }
+
+  .content-free-buttons {
+    justify-content: space-between;
+  }
+
+  .all-design-slider {
+    display: none;
+  }
+}

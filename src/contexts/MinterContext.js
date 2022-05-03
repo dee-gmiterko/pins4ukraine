@@ -35,7 +35,7 @@ export const MinterProvider = ({ children }) => {
   const [design, setDesign] = useState(0);
   const [minting, setMinting] = useState(false);
 
-  const rewardDeserved = amount && ethers.utils.parseEther(amount.toString()) >= tokenPrice;
+  const rewardDeserved = amount && (ethers.utils.parseEther(amount.toString()).gte(tokenPrice));
   const missingToReward = (tokenPrice && amount) ? tokenPrice.sub(ethers.utils.parseEther(amount.toString())) : ethers.BigNumber.from(0);
   const estimatedGasPrice = estimatedGas.mul(gasPrice);
 
