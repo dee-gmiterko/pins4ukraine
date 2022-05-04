@@ -38,26 +38,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-gatsby-cloud`,
-    // {
-    //   resolve: `gatsby-plugin-facebook-multi-pixels`,
-    //   options: [
-    //     {
-    //       dev: false,
-    //       alias: 'main-pixel',
-    //       pixelId: '928689911405331',
-    //       viewContent: true,
-    //       pageView: true,
-    //     },
-    //   ],
-    // },
-    // {
-    //   resolve: `gatsby-plugin-google-gtag`,
-    //   options: {
-    //     trackingIds: [
-    //       "G-M9GYEZ2DVM",
-    //     ],
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "G-F3F2CESYWK",
+        ],
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-anchor-links`,
