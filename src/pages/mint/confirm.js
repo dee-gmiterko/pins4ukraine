@@ -11,7 +11,7 @@ const MintConfirmPage = ({ data: { site }, pageContext }) => {
   const { active } = useWeb3React();
 
   return (
-    <Layout siteMetadata={site.siteMetadata}>
+    <Layout title="Confirmation" siteMetadata={site.siteMetadata}>
       <main className="content-box mint">
         <div className="logo">
           <Link to="/">

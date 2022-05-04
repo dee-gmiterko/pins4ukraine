@@ -28,7 +28,7 @@ const MintDesignPage = ({ data: { site }, pageContext }) => {
   }
 
   return (
-    <Layout siteMetadata={site.siteMetadata}>
+    <Layout title="Pick design" siteMetadata={site.siteMetadata}>
       <main className="content-free">
         <div className="logo">
           <Link to="/">

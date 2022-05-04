@@ -11,7 +11,7 @@ module.exports = {
     description: `Use your spare ETH to support a meaningful cause and get an NFT in return`,
     author: `Timeless`,
     siteUrl: `https://pins4ukraine.com`,
-    keywords: ['Pins', 'Pin', 'Ukraine', 'Support', 'Donate', 'NFT'],
+    keywords: ['pins', 'pin', 'enamel', 'Ukraine', 'support', 'donate', 'NFT', 'enamel pin'],
   },
   plugins: [
     {

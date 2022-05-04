@@ -7,7 +7,7 @@ import useMinter from "../../hooks/useMinter";
 
 const MintSuccessPage = ({ data: { site }, pageContext }) => {
   return (
-    <Layout siteMetadata={site.siteMetadata}>
+    <Layout title="Mint success" siteMetadata={site.siteMetadata}>
       <main className="content-box mint">
         <div className="logo">
           <Link to="/">
