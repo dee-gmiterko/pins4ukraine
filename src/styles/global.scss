@@ -30,20 +30,21 @@ html {
   background-position: -100px -180px;
 }
 
-html, body, #___gatsby, #gatsby-focus-wrapper {
+html, body, #___gatsby, #gatsby-focus-wrapper, #root {
   height: 100%;
   overflow-x: hidden;
 }
 
-#root {
+.container-position {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   width: 100%;
   min-height: 100%;
+  top: 0; left: 0; right: 0;
 
-  .root-container {
+  > .container {
     max-width: 1400px;
     width: 100%;
   }

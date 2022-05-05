@@ -55,6 +55,14 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+
+  .logo {
+    a {
+      img {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
 .logo {

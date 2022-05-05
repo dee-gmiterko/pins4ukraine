@@ -12,10 +12,15 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "generate-metadata": "npx hardhat run scripts/generate-metadata.js",
-    "hardhat-compile": "npx hardhat compile",
-    "hardhat-node": "npx hardhat node",
-    "hardhat-deploy": "npx hardhat run --network local scripts/deploy-configure.js",
-    "hardhat-test": "npx hardhat test"
+    "sc-compile": "npx hardhat compile",
+    "sc-test": "npx hardhat test",
+    "sc-node": "npx hardhat node",
+    "sc-local-deploy": "npx hardhat run --network local scripts/deploy-configure.js",
+    "sc-local-configure": "npx hardhat run --network local scripts/configure.js",
+    "sc-testnet-deploy": "npx hardhat run --network testnet scripts/deploy.js",
+    "sc-testnet-configure": "npx hardhat run --network testnet scripts/configure.js",
+    "sc-mainnet-deploy": "npx hardhat run --network mainnet scripts/deploy.js",
+    "sc-mainnet-configure": "npx hardhat run --network mainnet scripts/configure.js"
   },
   "keywords": [
     "gatsby",

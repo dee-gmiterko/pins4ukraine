@@ -81,8 +81,10 @@ const Step1Amount = () => {
         </ActionPrompt>
         <p>
           You have to donate at least <RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo> to get a pin.
-          <br/>
-          Time until the price rises by {tokenPriceIncrease && ethers.utils.formatEther(tokenPriceIncrease)} ETH: <RelevantInfo>{countdown}</RelevantInfo>
+          <br />
+          Time until the price rises by {tokenPriceIncrease && ethers.utils.formatEther(tokenPriceIncrease)} ETH:
+          <br />
+          <RelevantInfo>{countdown}</RelevantInfo>
         </p>
       </div>
   );

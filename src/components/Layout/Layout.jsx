@@ -7,23 +7,14 @@ import SEO from "../SEO/SEO";
 
 
 const Layout = ({ title, siteMetadata, children }) => {
-  const [inProp, setInProp] = useState(false);
-
-  useEffect(() => {
-    const a = () => {
-      setInProp(true);
-    }
-    setInterval(a);
-  }, []);
-
   return (
-    <div id="root">
+    <div class="container-position">
       <SEO
         title={title}
         siteMetadata={siteMetadata}
       />
       {/* <Header siteMetadata={siteMetadata} /> */}
-      <div className="root-container">
+      <div className="container">
         { children }
       </div>
       {/* <Footer siteMetadata={siteMetadata} /> */}

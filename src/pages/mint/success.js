@@ -29,22 +29,22 @@ const MintSuccessPage = ({ data: { site }, pageContext }) => {
             title={"I supported Ukraine and got this NFT pin"}
             related={[site.siteMetadata.twitter]}
           >
-            <button className="btn primary">
+            <p className="btn primary">
               Twitter
-            </button>
+            </p>
           </TwitterShareButton>
           <FacebookShareButton
             url={`pins4ukraine.com/assets/${design}.png`}
             quote={"I supported Ukraine and got this NFT pin"}
           >
-            <button className="btn primary">
+            <p className="btn primary">
               Facebook
-            </button>
+            </p>
           </FacebookShareButton>
-          <Link href={`https://opensea.io/assets/${contract.address}/${design}`}>
-            <button className="btn primary">
+          <Link to={`https://opensea.io/assets/${contract.address}/${design}`}>
+            <p className="btn primary">
               View on OpenSea
-            </button>
+            </p>
           </Link>
         </div>
         <p />
