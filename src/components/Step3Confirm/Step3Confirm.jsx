@@ -36,7 +36,7 @@ const Step3Confirm = () => {
   return (
     <div className="confirm">
       <div>
-        <h2>Details</h2>
+        <h3>Details</h3>
         <dl>
           <HorizontalSpacing>
             <div>
@@ -60,8 +60,16 @@ const Step3Confirm = () => {
               <HorizontalSpacing>
                 <dt>Gas price</dt>
                 <dd>
-                  <span alt="Less than">&lt; </span>
+                  <span alt="About">~ </span>
                   {ethers.utils.formatEther(estimatedGasPrice).substring(0, 6)} ETH
+                </dd>
+              </HorizontalSpacing>
+              <hr />
+              <HorizontalSpacing>
+                <dt>Total</dt>
+                <dd>
+                  <span alt="About">~ </span>
+                  {amount && ethers.utils.formatEther(ethers.utils.parseEther(amount).add(estimatedGasPrice)).substring(0, 6)} ETH
                 </dd>
               </HorizontalSpacing>
             </div>
@@ -69,7 +77,7 @@ const Step3Confirm = () => {
         </dl>
       </div>
       <div>
-        <h2>Connect wallet</h2>
+        <h3>Connect wallet</h3>
         <div className="connectors">
           {
             connectorsData.map(c => {

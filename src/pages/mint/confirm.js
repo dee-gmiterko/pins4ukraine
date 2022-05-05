@@ -20,13 +20,13 @@ const MintConfirmPage = ({ data: { site }, pageContext }) => {
         </div>
         <Step3Confirm />
         <div className="content-box-buttons">
-          <Link to="/mint/amount">
+          <Link to="/mint/amount" className="no-flex-grow">
             <button className="btn">
-              Back
+              Go Back
             </button>
           </Link>
-          <button className="btn primary flex-grow" onClick={mint} disabled={!active}>
-            Support
+          <button className="btn primary" onClick={mint} disabled={!active}>
+            Mint
           </button>
         </div>
       </main>

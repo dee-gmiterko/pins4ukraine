@@ -7,7 +7,6 @@ import React from "react";
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from "@ethersproject/providers";
 import { MinterProvider } from "./src/contexts/MinterContext";
-import { IntlProvider } from 'react-intl';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import './src/styles/reset.scss';
@@ -25,9 +24,7 @@ export const wrapRootElement = ({ element }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <MinterProvider>
-        <IntlProvider locale="en-US">
-          {element}
-        </IntlProvider>
+        {element}
       </MinterProvider>
     </Web3ReactProvider>
   )

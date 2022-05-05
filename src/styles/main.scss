@@ -1,14 +1,13 @@
 @use 'sass:math';
 @import './variables.scss';
 
-
 .content-box {
   position: relative;
-  padding: 2rem;
+  padding: 2rem 8rem;
   margin-top: (350px * 0.63 * 0.7) + 10px;
   margin-bottom: 3rem;
   background: white;
-  border-radius: 2rem;
+  border-radius: 3rem;
   border: $b-width solid $color-dark;
   min-height: 30%;
   max-width: 100%;
@@ -24,7 +23,7 @@
     position: absolute;
     top: -1 * $b-width - 25px; right: -1 * $b-width; bottom: -1 * $b-width + 25px; left: -1 * $b-width;
     background: $color-dark;
-    border-radius: 2rem;
+    border-radius: 3rem;
     border: $b-width solid $color-dark;
     z-index: -1;
   }
@@ -39,21 +38,13 @@
       background: $color-darker;
       border-color: $color-darker;
     }
-  }
 
-  &.story {
-    padding-bottom: 100%;
-    background-image: url(../images/bunch.jpg);
-    background-size: contain;
-    background-position: bottom;
-    background-repeat: no-repeat;
-  }
+    .btn {
+      border: $b-width solid $color-darker;
 
-  .logo {
-    a {
-      img {
-        width: 200px;
-        margin-top: (200px * 0.63 * -0.7) - 16px;
+      &::before {
+        background: $color-darker;
+        border: $b-width solid $color-darker;
       }
     }
   }
@@ -75,26 +66,42 @@
   a {
     display: block;
     position: relative;
+    transition: transform 100ms linear;
 
     &:hover {
-      top: -3px;
+      transform: scale(1.06);
+      transform-origin: top center;
     }
 
     img {
-      width: 350px;
-      margin-top: (350px * 0.63 * -0.7) - 16px;
+      width: 200px;
+      margin-top: (200px * 0.63 * -0.7) - 16px;
+    }
+  }
+
+  &.larger {
+    a {
+      img {
+        width: 350px;
+        margin-top: (350px * 0.63 * -0.7) - 16px;
+      }
     }
   }
 }
 
 .btn {
-  padding: 1rem;
+  padding: 1.5rem 2rem;
   position: relative;
   background: white;
-  border-radius: 2rem;
+  border-radius: 2.6rem;
   border: $b-width solid $color-dark;
   display: block;
   cursor: pointer;
+  color: $color-dark;
+  font-size: 2.5rem;
+  top: 0;
+  transition: top 100ms linear;
+  font-weight: 900;
 
   &.primary {
     background: $color-primary;
@@ -114,32 +121,37 @@
   &::before {
     content: "";
     position: absolute;
-    top: -1 * $b-width - 8px; right: -1 * $b-width; bottom: -1 * $b-width + 8px; left: -1 * $b-width;
+    top: -1 * $b-width - 12px; right: -1 * $b-width; bottom: -1 * $b-width + 12px; left: -1 * $b-width;
     background: $color-dark;
-    border-radius: 2rem;
+    border-radius: 2.6rem;
     border: $b-width solid $color-dark;
     z-index: -1;
+    transition: all 100ms linear;
   }
 
   &:hover {
-    top: -3px;
+    top: -12px;
 
     &::before {
-      top: -1 * $b-width - 5px; right: -1 * $b-width; bottom: -1 * $b-width + 5px; left: -1 * $b-width;
+      top: -1 * $b-width; right: -1 * $b-width; bottom: -1 * $b-width; left: -1 * $b-width;
     }
   }
 }
 
 .content-box-buttons {
-  margin-bottom: -4rem;
+  margin-bottom: -6rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
   z-index: 0;
 
-  a {
+  > a, > button {
+    margin: 0 2rem;
     flex-grow: 1;
+  }
+
+  a {
     display: block;
 
     button {
@@ -154,6 +166,10 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2rem;
+
+  > a, button {
+    margin: 0 2rem;
+  }
 }
 
 .designs-container {
@@ -186,8 +202,9 @@
     }
 
     &[disabled] {
-      opacity: 0.9;
-      filter: grayscale(50%);
+      opacity: 0.5;
+      filter: grayscale(80%);
+      cursor: auto;
     }
   }
 }
@@ -211,7 +228,7 @@
     align-items: center;
 
     img {
-      width: 200px;
+      width: 320px;
     }
 
     span {
@@ -223,6 +240,8 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
+    z-index: 0;
+    position: relative;
 
     .connector {
       display: flex;
@@ -231,6 +250,29 @@
       align-items: center;
       margin-bottom: 1rem;
       padding: 0.2rem;
+    }
+  }
+}
+
+.faq {
+  dl {
+    display: flex;
+    flex-direction: column;
+
+    dt {
+      color: #fff;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    dd {
+      margin-bottom: 2rem;
+      color: #fff;
+      &:before {
+        content: "> "
+      }
+      font-weight: 900;
+      margin-left: 1rem;
     }
   }
 }

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const ActionPrompt = styled.p`
   color: #fff;
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: 900;
   margin-top: 3rem;
   margin-bottom: 5rem;
   @media(max-width: 700px) {
@@ -38,17 +38,17 @@ const MintDesignPage = ({ data: { site }, pageContext }) => {
         {rewardDeserved ? (
           <ActionPrompt>Choose your reward.</ActionPrompt>
         ) : (
-          <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} to get a pin.</ActionPrompt>
+          <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} ETH to get a pin.</ActionPrompt>
         )}
         <Step2Design />
         {!rewardDeserved && (
           <div className="content-free-buttons">
             <button className="btn" onClick={matchReward}>
-              Add {ethers.utils.formatEther(missingToReward)}
+              Add {ethers.utils.formatEther(missingToReward)} ETH
             </button>
             <Link to="/mint/confirm">
               <button className="btn">
-                Continue with no reward
+                Proceed with no reward
               </button>
             </Link>
           </div>

@@ -26,7 +26,7 @@ export const MinterProvider = ({ children }) => {
   const [lastOpenDesign, setLastOpenDesign] = useState(undefined);
   const [mintOpenSince, setMintOpenSince] = useState(undefined);
   const [mintOpenUntil, setMintOpenUntil] = useState(undefined);
-  const [nextIncreaseIn, setNextIncreaseIn] = useState(undefined);
+  const [nextIncreaseAt, setNextIncreaseAt] = useState(undefined);
   const [nextIncreaseTimeout, setNextIncreaseTimeout] = useState(undefined);
   const [estimatedGas, setEstimatedGas] = useState(ethers.BigNumber.from("0"));
   const [gasPrice, setGasPrice] = useState(ethers.BigNumber.from("0"));
@@ -70,7 +70,7 @@ export const MinterProvider = ({ children }) => {
         setAmount(ethers.utils.formatEther(tokenPrice));
         const nextIncreaseAt = (mintOpenSinceN + (increases+1) * increaseRate) * 1000;
         const nextIncreaseIn = nextIncreaseAt - moment.now();
-        setNextIncreaseIn(nextIncreaseIn);
+        setNextIncreaseAt(nextIncreaseAt);
 
         // schedule update
         if(nextIncreaseTimeout) {
@@ -161,7 +161,7 @@ export const MinterProvider = ({ children }) => {
         lastOpenDesign,
         mintOpenUntil,
         mintOpenSince,
-        nextIncreaseIn,
+        nextIncreaseAt,
         estimatedGasPrice,
 
         amount,

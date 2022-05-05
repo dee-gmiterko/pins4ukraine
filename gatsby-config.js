@@ -12,6 +12,8 @@ module.exports = {
     author: `Timeless`,
     siteUrl: `https://pins4ukraine.com`,
     keywords: ['pins', 'pin', 'enamel', 'Ukraine', 'support', 'donate', 'NFT', 'enamel pin'],
+    twitter: "pins4ukraine",
+    instagram: "pins4ukraine",
   },
   plugins: [
     {
@@ -48,7 +50,12 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-anchor-links`,
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -100
+      }
+    },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {

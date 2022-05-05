@@ -9,7 +9,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
     <Layout siteMetadata={site.siteMetadata}>
       <>
         <main className="content-box">
-          <div className="logo">
+          <div className="logo larger">
             <Link to="/">
               <img src={logo} alt={ site.siteMetadata.title } />
             </Link>
@@ -27,7 +27,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
             </Link>
             <Link to="/story">
               <button className="btn">
-                Story
+                The Story
               </button>
             </Link>
           </div>
