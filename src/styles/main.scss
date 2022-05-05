@@ -141,7 +141,20 @@
     top: -12px;
 
     &::before {
-      top: -1 * $b-width; right: -1 * $b-width; bottom: -1 * $b-width; left: -1 * $b-width;
+      top: -1 * $b-width; bottom: -1 * $b-width;
+    }
+  }
+
+  &[disabled] {
+    color: $color-dark-text;
+    cursor: auto;
+
+    &:hover {
+      top: 0;
+
+      &::before {
+        top: -1 * $b-width - 12px; bottom: -1 * $b-width + 12px;
+      }
     }
   }
 }

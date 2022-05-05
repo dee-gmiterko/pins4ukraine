@@ -22,6 +22,7 @@ const Step2Design = () => {
       <div className="designs-container">
         {designIds.map((designId, index) => (
           <button
+            key={index}
             onClick={setDesignNavigate.bind(this, designId)}
             className="design"
             disabled={!rewardDeserved}

@@ -1,16 +1,31 @@
 @use 'sass:color';
 @import './variables.scss';
 
-@media(max-width: 700px) {
+@media(max-width: 900px) {
   p, button, input, dt, dd {
     font-family: "Trueno";
     font-weight: normal;
     font-size: 1.5rem;
   }
 
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem;
+  }
+
   .content-box {
     margin-top: 0;
     margin-bottom: 0;
+    padding: 1rem;
     background: rgba(256, 256, 256, 0.8);
     border-radius: 0;
     border: 0;
@@ -23,6 +38,7 @@
       a {
         img {
           margin-top: 0;
+          width: 200px;
         }
       }
     }
@@ -31,22 +47,23 @@
       margin-top: 0;
       background-color: color.scale($color-dark, $alpha: -20%);
     }
-
-    &.story {
-
-    }
   }
 
   .logo {
     a {
       img {
         margin-top: 0;
+        width: 200px;
       }
     }
   }
 
   .content-box-buttons {
     margin-bottom: 0;
+    
+    > a, > button {
+      margin: 0;
+    }
   }
 
   .content-free-buttons {
@@ -55,5 +72,9 @@
 
   .all-design-slider {
     display: none;
+  }
+
+  .no-flex-grow {
+    display: none !important;
   }
 }

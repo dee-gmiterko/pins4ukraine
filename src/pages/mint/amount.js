@@ -4,8 +4,21 @@ import logo from "../../images/logo.svg";
 import Layout from "../../components/Layout/Layout";
 import Step1Amount from "../../components/Step1Amount/Step1Amount";
 import useMinter from "../../hooks/useMinter";
+import {ethers} from "ethers";
 
 const MintAmountPage = ({ data: { site }, pageContext }) => {
+  const { amount } = useMinter();
+
+  let canParseAmount = false;
+  try {
+    if(amount) {
+      ethers.utils.parseEther(amount.toString());
+      canParseAmount = true;
+    }
+  } catch (err) {
+    //pass
+  }
+
   return (
     <Layout title="Support" siteMetadata={site.siteMetadata}>
       <main className="content-box mint">
@@ -19,7 +32,7 @@ const MintAmountPage = ({ data: { site }, pageContext }) => {
         </div>
         <div className="content-box-buttons">
           <Link to="/mint/design">
-            <button className="btn primary">
+            <button className="btn primary" disabled={!canParseAmount}>
               Proceed
             </button>
           </Link>
