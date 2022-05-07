@@ -60,7 +60,7 @@
 
   .content-box-buttons {
     margin-bottom: 0;
-    
+
     > a, > button {
       margin: 0;
     }
@@ -76,5 +76,9 @@
 
   .no-flex-grow {
     display: none !important;
+  }
+
+  .name-matching-minigame {
+    display: none;
   }
 }

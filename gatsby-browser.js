@@ -13,6 +13,7 @@ import './src/styles/reset.scss';
 import './src/styles/global.scss';
 import './src/styles/main.scss';
 import './src/styles/slider.scss';
+import './src/styles/accordion.scss';
 import './src/styles/mobile.scss';
 import 'react-toastify/dist/ReactToastify.css';
 

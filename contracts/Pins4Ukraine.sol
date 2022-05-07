@@ -52,11 +52,15 @@ contract Pins4Ukraine is ERC1155, IERC2981, Ownable {
     }
 
     function transferSupport() external {
-        payable(UKRAINE_ADDRESS).transfer(address(this).balance);
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No balance to transfer");
+        payable(UKRAINE_ADDRESS).transfer(balance);
     }
 
     function transferSupportERC20(IERC20 _token) external {
-        _token.safeTransfer(UKRAINE_ADDRESS, _token.balanceOf(address(this)));
+        uint256 balance = _token.balanceOf(address(this));
+        require(balance > 0, "No balance to transfer");
+        _token.safeTransfer(UKRAINE_ADDRESS, balance);
     }
 
     // Metadata

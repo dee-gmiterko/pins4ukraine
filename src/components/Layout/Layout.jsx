@@ -8,7 +8,7 @@ import SEO from "../SEO/SEO";
 
 const Layout = ({ title, siteMetadata, children }) => {
   return (
-    <div class="container-position">
+    <div className="container-position">
       <SEO
         title={title}
         siteMetadata={siteMetadata}

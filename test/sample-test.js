@@ -1,18 +1,18 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Pin4Ukraine", function () {
+describe("Pins4Ukraine", function () {
   it("Should not be able to mint when not configured", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     await expect(pins4ukraine.mint(1)).to.be.revertedWith("MINT_NOT_CONFIGURED");
   });
 
   it("Should not be able to mint too soon", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -24,8 +24,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should not be able to mint id 0", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -37,8 +37,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should not be able to mint id 4", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -51,8 +51,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should be able to mint id 1", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -71,8 +71,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should be able to mint id 3", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -91,8 +91,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should pass but not mint", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022
@@ -110,8 +110,8 @@ describe("Pin4Ukraine", function () {
   });
 
   it("Should not be able to mint too late", async function () {
-    const Pin4Ukraine = await ethers.getContractFactory("Pin4Ukraine");
-    const pins4ukraine = await Pin4Ukraine.deploy();
+    const Pins4Ukraine = await ethers.getContractFactory("Pins4Ukraine");
+    const pins4ukraine = await Pins4Ukraine.deploy();
     await pins4ukraine.deployed();
 
     const setMintOpenSinceTx = await pins4ukraine.setMintOpenSince(1654041600); // Jun 01 2022

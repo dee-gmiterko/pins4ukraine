@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql, Link, navigate } from "gatsby";
 import logo from "../../images/logo.svg";
 import { ethers } from 'ethers';
@@ -22,7 +22,7 @@ const ActionPrompt = styled.p`
 
 const MintDesignPage = ({ data: { site }, pageContext }) => {
   const { rewardDeserved, missingToReward, tokenPrice, setAmount } = useMinter();
-
+  
   const matchReward = () => {
     setAmount(ethers.utils.formatEther(tokenPrice));
   }
@@ -36,14 +36,14 @@ const MintDesignPage = ({ data: { site }, pageContext }) => {
           </Link>
         </div>
         {rewardDeserved ? (
-          <ActionPrompt>Choose your reward.</ActionPrompt>
+          <ActionPrompt>Incredible! Now you can choose your reward.</ActionPrompt>
         ) : (
           <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} ETH to get a pin.</ActionPrompt>
         )}
         <Step2Design />
         {!rewardDeserved && (
           <div className="content-free-buttons">
-            <button className="btn" onClick={matchReward}>
+            <button className="btn primary" onClick={matchReward}>
               Add {ethers.utils.formatEther(missingToReward)} ETH
             </button>
             <Link to="/mint/confirm">
