@@ -10,13 +10,28 @@ import designNames from "../../designNames.json";
 var settings = {
   infinite: true,
   speed: 500,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 2000,
   slidesToShow: 1,
   slidesToScroll: 1,
-  centerMode: true,
-  variableWidth: true,
+  arrows: false,
+  dots: true,
 };
+
+const Slide = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const DesignName = styled.div`
+  color: #fff;
+  padding: 1rem;
+  // wahcky graphics
+  background: linear-gradient(to right, #666 0%, #fff 50%, #666 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
 
 const AllDesignSlider = () => {
   const { design, setDesign, firstOpenDesign, lastOpenDesign, rewardDeserved } = useMinter();
@@ -28,14 +43,18 @@ const AllDesignSlider = () => {
       <Slider {...settings}>
         {designIds.map((designId, index) => (
           <div key={index}>
-            <ProductViewer
-              imagesBaseUrl={`/assets/${designId}`}
-              imagesCount={16}
-              imagesFiletype="png"
-            />
-            <p>
-              {designNames[designId.toString()]}
-            </p>
+            <Slide>
+              <div className="product-background">
+                <ProductViewer
+                  imagesBaseUrl={`/assets/${designId}`}
+                  imagesCount={16}
+                  imagesFiletype="png"
+                />
+              </div>
+              <DesignName>
+                {designNames[designId.toString()]}
+              </DesignName>
+            </Slide>
           </div>
         ))}
       </Slider>

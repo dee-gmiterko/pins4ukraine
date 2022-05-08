@@ -33,7 +33,7 @@ export const MinterProvider = ({ children }) => {
 
   const [amount, setAmount] = useState(0);
   const [design, setDesign] = useState(0);
-  const [minting, setMinting] = useState(false);
+  const [transactionReceipt, setTransactionReceipt] = useState(undefined);
 
   const rewardDeserved = amount && (ethers.utils.parseEther(amount.toString()).gte(tokenPrice));
   const missingToReward = (tokenPrice && amount) ? tokenPrice.sub(ethers.utils.parseEther(amount.toString())) : ethers.BigNumber.from(0);
@@ -126,11 +126,9 @@ export const MinterProvider = ({ children }) => {
   }, []);
 
   const mint = async () => {
-    setMinting(true);
     try {
       if(rewardDeserved) {
         const transaction = await contract.mint(design, { value: ethers.utils.parseEther(amount) });
-        await transaction.wait();
 
       } else {
         const signer = library.getSigner();
@@ -138,14 +136,16 @@ export const MinterProvider = ({ children }) => {
           to: process.env.GATSBY_SMART_CONTRACT,
           value: ethers.utils.parseEther(amount)
         });
-        await transaction.wait();
       }
 
       navigate("/mint/success");
+
+      const transactionReceipt = await transaction.wait();
+      setTransactionReceipt(transactionReceipt);
+
     } catch (err) {
       toast.error(parseError(err));
     }
-    setMinting(false);
   };
 
   return (
@@ -168,7 +168,7 @@ export const MinterProvider = ({ children }) => {
         setAmount,
         design,
         setDesign,
-        minting,
+        transactionReceipt,
         rewardDeserved,
         missingToReward,
 

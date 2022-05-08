@@ -2,8 +2,10 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import logo from "../images/logo.svg";
 import bunchImg from "../images/bunch.jpg";
+import teamImg from "../images/team.jpg";
 import Layout from "../components/Layout/Layout";
 import styled from 'styled-components';
+import useMinter from "../hooks/useMinter";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import {
     Accordion,
@@ -15,16 +17,35 @@ import {
 import NameMatchingMinigame from "../components/NameMatchingMinigame/NameMatchingMinigame";
 
 const ParagraphStory = styled.p`
-  text-align: left;
   color: #fff;
   font-weight: 700;
   font-size: 2rem;
   text-align: justify;
 `;
 
+const ParagraphWallet = styled.p`
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+
+`;
+
 const ImageBunch = styled.img`
+  display: block;
   max-width: 100%;
   margin: 6rem auto 0 auto;
+`;
+
+const ImageTeam = styled.img`
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 3rem auto 0 auto;
+  border-radius: 2rem;
+`;
+
+const Insignificant = styled.span`
+  color: #527B87;
 `;
 
 const Fuck = styled.span`
@@ -32,6 +53,8 @@ const Fuck = styled.span`
 `;
 
 const StoryPage = ({ data: { site }, pageContext }) => {
+  const { contract } = useMinter();
+
   return (
     <Layout title="Story" siteMetadata={site.siteMetadata}>
       <>
@@ -76,6 +99,7 @@ const StoryPage = ({ data: { site }, pageContext }) => {
         <main className="content-box mint">
           <div className="p2">
             <h2 id="who-are-we">Who are we?</h2>
+
             <ParagraphStory>
               We're a group of three friends, ordinary guys from Czechia who study or work
               regular jobs and like to go out on Friday nights. We also consider democracy the
@@ -88,7 +112,8 @@ const StoryPage = ({ data: { site }, pageContext }) => {
               help the bold Ukrainian nation and fight against Putin's regime. Luckily, we
               share the passion for 3D art, programming, and — of course — NFTs!
             </ParagraphStory>
-            <ImageBunch src={bunchImg} />
+
+            <ImageTeam src={teamImg} />
           </div>
         </main>
 
@@ -120,8 +145,19 @@ const StoryPage = ({ data: { site }, pageContext }) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <ParagraphStory>
-                    100% of your funds go directly to the ETH address published by the Ministry of
-                    Digital Transformation of Ukraine. The UA government will then decide what the
+                    100% of your funds go directly to the ETH address
+                    published by the <a href="https://donate.thedigital.gov.ua/"
+                    target="_blank">Ministry of Digital Transformation of Ukraine</a>, but you also
+                    get an NFT as a reward.
+                  </ParagraphStory>
+                  <ParagraphWallet>
+                    <Insignificant>
+                      Public support wallet: <br/>
+                      <a href={`https://etherscan.io/address/0x165CD37b4C644C2921454429E7F9358d18A45e14`} target="_blank">0x165CD37b4C644C2921454429E7F9358d18A45e14</a>
+                    </Insignificant>
+                  </ParagraphWallet>
+                  <ParagraphStory>
+                    The UA government will then decide what the
                     best use for your support is so you can be sure it is spent as effectively as
                     possible.
                   </ParagraphStory>
@@ -133,6 +169,10 @@ const StoryPage = ({ data: { site }, pageContext }) => {
                     And if by any chance you still have a hard time believing us, that's why NFTs
                     are perfect — you can always take a peek at our smart contract.
                   </ParagraphStory>
+                  <ParagraphWallet>
+                    Smart contract: <br/>
+                    <a href={`https://etherscan.io/address/${contract.address}`} target="_blank">{contract.address}</a>
+                  </ParagraphWallet>
                 </AccordionItemPanel>
               </AccordionItem>
 
@@ -284,19 +324,32 @@ const StoryPage = ({ data: { site }, pageContext }) => {
 
         <main className="content-box mint">
           <div className="p2">
-            <h2 id="contact">Contact</h2>
-            <p>
-              Twitter
-            </p>
-            <p>
-              Instagram
-            </p>
-            <p>
-              Email: <a href="mailto:info@pins4ukraine.com">info@pins4ukraine.com</a>
-            </p>
-            <p>
-              Twitter
-            </p>
+            <h2 id="contact">Get in touch with US!</h2>
+            <ParagraphStory>
+              Because we'd be honored to get to know you better and answer any burning questions!
+            </ParagraphStory>
+            <div className="icon-btn-list">
+              <a href={`https://instagram.com/${site.siteMetadata.instagram}`} target="_blank">
+                <button className="icon-btn">
+                  <i className="instagram">Instagram</i>
+                </button>
+              </a>
+              <a href={`https://twitter.com/${site.siteMetadata.twitter}`} target="_blank">
+                <button className="icon-btn">
+                  <i className="twitter">Twitter</i>
+                </button>
+              </a>
+              <a href={`mailto:${site.siteMetadata.email}`} target="_blank">
+                <button className="icon-btn">
+                  <i className="email">Email</i>
+                </button>
+              </a>
+              <a href={`https://opensea.io/collection/${site.siteMetadata.opensea_collection}`} target="_blank">
+                <button className="icon-btn">
+                  <i className="opensea">OpenSea</i>
+                </button>
+              </a>
+            </div>
           </div>
         </main>
 
@@ -323,6 +376,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
+        twitter
+        email
+        opensea_collection
       }
     }
   }

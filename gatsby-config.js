@@ -14,6 +14,8 @@ module.exports = {
     keywords: ['pins', 'pin', 'enamel', 'Ukraine', 'support', 'donate', 'NFT', 'enamel pin'],
     twitter: "pins4ukraine",
     instagram: "pins4ukraine",
+    email: "info@pins4ukraine.com",
+    opensea_collection: "pins4ukraine",
   },
   plugins: [
     {

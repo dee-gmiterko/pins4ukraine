@@ -24,6 +24,22 @@
   src: url(../fonts/truenoexbd.otf) format('opentype');
 }
 
+@font-face {
+  font-family: 'Trueno';
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: 100;
+  src: url(../fonts/truenoexbdit.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Trueno outline';
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: 100;
+  src: url(../fonts/truenoexbdolit.otf) format('opentype');
+}
+
 html {
   background-color: #003039;
   background-image: url(../images/background.png);
@@ -51,7 +67,7 @@ html, body, #___gatsby, #gatsby-focus-wrapper, #root {
 }
 
 h2 {
-  font-family: "Trueno";
+  font-family: "Trueno", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   color: #fbb03b;
@@ -60,7 +76,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Trueno";
+  font-family: "Trueno", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   color: #fbb03b;
@@ -70,12 +86,13 @@ h3 {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: $color-primary;
 }
 
 p, button, input, dt, dd {
-  font-family: "Trueno";
+  font-family: "Trueno", sans-serif;
   font-weight: bold;
-  font-size: 2.2rem;
+  font-size: 2rem;
   line-height: 2.6rem;
 }
 
@@ -87,6 +104,7 @@ p {
 
 hr {
   color: $color-dark-text;
+  border-bottom-width: 3px;
 }
 
 .navigate-enter {
@@ -131,4 +149,12 @@ input[type=number] {
 
 .no-flex-grow {
   flex-grow: 0 !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-italic {
+  font-style: italic;
 }
