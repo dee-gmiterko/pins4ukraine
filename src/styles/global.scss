@@ -27,6 +27,14 @@
 @font-face {
   font-family: 'Trueno';
   font-style: italic;
+  font-weight: normal;
+  font-stretch: 100;
+  src: url(../fonts/truenoltit.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Trueno';
+  font-style: italic;
   font-weight: 900;
   font-stretch: 100;
   src: url(../fonts/truenoexbdit.otf) format('opentype');
@@ -44,6 +52,30 @@ html {
   background-color: #003039;
   background-image: url(../images/background.png);
   background-position: -100px -180px;
+}
+
+body {
+  .bg-playful, .bg-dark {
+    content: "";
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    opacity: 0;
+    transition: opacity 500ms linear;
+    z-index: -1;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .bg-playful {
+    background-image: url(../images/background-playful.png);
+    background-position: -80px -120px;
+  }
+
+  .bg-dark {
+    background-image: url(../images/background-dark.png);
+  }
 }
 
 html, body, #___gatsby, #gatsby-focus-wrapper, #root {

@@ -18,7 +18,7 @@ import NameMatchingMinigame from "../components/NameMatchingMinigame/NameMatchin
 
 const ParagraphStory = styled.p`
   color: #fff;
-  font-weight: 700;
+  font-weight: normal;
   font-size: 2rem;
   text-align: justify;
 `;
@@ -39,9 +39,8 @@ const ImageBunch = styled.img`
 const ImageTeam = styled.img`
   display: block;
   width: 100%;
-  max-width: 800px;
   margin: 3rem auto 0 auto;
-  border-radius: 2rem;
+  border-radius: 0;
 `;
 
 const Insignificant = styled.span`
@@ -52,7 +51,7 @@ const Fuck = styled.span`
   letter-spacing: 4px;
 `;
 
-const StoryPage = ({ data: { site }, pageContext }) => {
+const StoryPage = ({ data: { site }, location }) => {
   const { contract } = useMinter();
 
   return (
@@ -120,7 +119,11 @@ const StoryPage = ({ data: { site }, pageContext }) => {
         <main className="content-box mint faq">
           <div className="p2">
             <h2 id="faq">FAQ</h2>
-            <Accordion>
+            <Accordion
+              allowMultipleExpanded={true}
+              allowZeroExpanded={true}
+              preExpanded={location.hash === "#faq" ? ["100-percent"] : undefined}
+            >
 
               <AccordionItem>
                 <AccordionItemHeading>
@@ -139,7 +142,7 @@ const StoryPage = ({ data: { site }, pageContext }) => {
                 </AccordionItemPanel>
               </AccordionItem>
 
-              <AccordionItem>
+              <AccordionItem uuid="100-percent">
                 <AccordionItemHeading>
                   <AccordionItemButton>WHERE DOES MY ETH GO?</AccordionItemButton>
                 </AccordionItemHeading>

@@ -52,7 +52,7 @@ const LogoGreatPick = styled.div`
   }
 `;
 
-const MintConfirmPage = ({ data: { site }, pageContext }) => {
+const MintConfirmPage = ({ data: { site } }) => {
   const { mint, design, rewardDeserved } = useMinter();
   const { active } = useWeb3React();
 
@@ -102,6 +102,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
+        twitter
+        email
+        opensea_collection
       }
     }
   }

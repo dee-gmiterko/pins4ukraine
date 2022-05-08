@@ -6,7 +6,7 @@ import Step1Amount from "../../components/Step1Amount/Step1Amount";
 import useMinter from "../../hooks/useMinter";
 import {ethers} from "ethers";
 
-const MintAmountPage = ({ data: { site }, pageContext }) => {
+const MintAmountPage = ({ data: { site } }) => {
   const { amount } = useMinter();
 
   let canParseAmount = false;
@@ -53,6 +53,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
+        twitter
+        email
+        opensea_collection
       }
     }
   }

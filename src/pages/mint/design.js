@@ -20,9 +20,9 @@ const ActionPrompt = styled.p`
   }
 `;
 
-const MintDesignPage = ({ data: { site }, pageContext }) => {
+const MintDesignPage = ({ data: { site } }) => {
   const { rewardDeserved, missingToReward, tokenPrice, setAmount } = useMinter();
-  
+
   const matchReward = () => {
     setAmount(ethers.utils.formatEther(tokenPrice));
   }
@@ -69,6 +69,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
+        twitter
+        email
+        opensea_collection
       }
     }
   }

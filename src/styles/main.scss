@@ -1,6 +1,36 @@
 @use 'sass:math';
 @import './variables.scss';
 
+.header {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+
+  .icon-btn-list.simple {
+    padding: 0;
+
+    > a, > button {
+      margin: 0;
+    }
+
+    .icon-btn {
+      width: 50px;
+      padding-bottom: 50px;
+      opacity: 0.5;
+      transition: opacity 100ms linear, top 100ms linear;
+
+      i {
+        top: 0.5rem; right: 0.5rem; bottom: 0.5rem; left: 0.5rem;
+      }
+
+      &:hover {
+        top: -6px;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
 .content-box {
   position: relative;
   padding: 2rem 8rem;
@@ -56,10 +86,9 @@
 }
 
 .tap-it-container {
-  margin-top: 150px;
-  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .tap-it-box {
     position: relative;
@@ -67,6 +96,7 @@
     background: $color-dark;
     border-radius: 3rem;
     border: $b-width solid $color-dark;
+    height: 100%;
     font-weight: 900;
     cursor: pointer;
     overflow: hidden;
@@ -88,7 +118,11 @@
     }
 
     .tap-it-back {
-      padding: 8rem 0;
+      padding: 8rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       p {
         color: #fff;
@@ -106,20 +140,25 @@
     .tap-it-front {
       content: "";
       position: absolute;
-      top: -1 * $b-width + 25px; right: -1 * $b-width; bottom: -1 * $b-width; left: -1 * $b-width;
+      top: -1 * $b-width + 25px; right: -1 * $b-width; bottom: -2 * $b-width; left: -1 * $b-width;
+      padding: 8rem 4rem;
+
       background: white;
       color: $color-dark;
       border-radius: 3rem;
       border: $b-width solid $color-dark;
+
+      padding: 8rem 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 8rem 0;
+      justify-content: center;
+      align-items: center;
+
       transform: translateY(0);
       transition: transform 300ms cubic-bezier(0.68, -0.6, 0.32, 1.6);
 
       p {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
       }
     }
 
@@ -145,7 +184,11 @@
   }
 
   .content-box-buttons {
-    margin-top: -3rem;
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+    padding: 0 2rem;
   }
 }
 
@@ -198,29 +241,32 @@
   }
 }
 
-.receipt-box {
+.receipt-container {
   background: $color-darker;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-style: italic;
   min-height: 100vh;
 
-  .receipt dt, .receipt dd {
-    font-size: 1.5rem;
-    color: #fff;
-  }
+  .receipt-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-style: italic;
+    padding: 6rem 3rem;
 
-  .reward {
-    padding: 2rem;
-    cursor: pointer;
+    .receipt dt, .receipt dd {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-    img {
-      display: block;
-      max-width: 80%;
-      border: 1px solid #ddd;
-      margin: 0 auto;
+    .reward {
+      padding: 2rem;
+      cursor: pointer;
+
+      img {
+        display: block;
+        max-width: 80%;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -348,7 +394,7 @@
   z-index: 0;
 
   > a, > button {
-    margin: 0 2rem;
+    margin: 0 1rem;
     flex-grow: 1;
   }
 
@@ -386,6 +432,7 @@
     padding: 6px;
     cursor: pointer;
     width: math.div(1,6)*100%;
+    transition: transform 100ms ease-in-out;
 
     @media(max-width: 1000px) {
       width: math.div(1,3)*100%;
@@ -402,6 +449,11 @@
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
     }
 
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
     &[disabled] {
       opacity: 0.5;
       filter: grayscale(80%);
@@ -413,12 +465,12 @@
 .receipt {
   dt {
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 0.1rem;
     margin-right: 5rem;
   }
 
   dd {
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
     text-align: right;
     flex-grow: 1;
   }
@@ -450,7 +502,9 @@
   }
 
   .receipt dt, .receipt dd {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 700;
   }
 }
 
@@ -525,6 +579,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  position: relative;
+  z-index: 0;
+  padding-top: 2rem;
 
   > a, > button {
     display: block;
@@ -540,6 +597,8 @@
     width: 100%;
     padding-bottom: 40%;
     cursor: pointer;
+    top: 0;
+    transition: top 100ms linear;
 
     i {
       position: absolute;
@@ -572,6 +631,25 @@
         mask-image: url(../images/icons/tiktok.svg);
       }
     }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -1 * $b-width - 12px; right: -1 * $b-width; bottom: -1 * $b-width + 12px; left: -1 * $b-width;
+      background: $color-darker;
+      border-radius: 2.6rem;
+      border: $b-width solid $color-darker;
+      z-index: -1;
+      transition: all 100ms linear;
+    }
+
+    &:hover {
+      top: -12px;
+
+      &::before {
+        top: -1 * $b-width; bottom: -1 * $b-width;
+      }
+    }
   }
 
   &.simple {
@@ -588,6 +666,10 @@
 
       i {
         background-color: #fff;
+      }
+
+      &::before {
+        display: none;
       }
     }
   }

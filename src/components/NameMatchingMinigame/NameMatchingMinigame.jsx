@@ -43,7 +43,7 @@ const NameMatchingMinigame = () => {
             ref={(element) => namesEls.current[designId] = element}
             onMouseEnter={handleReveal.bind(this, designId)}
             onMouseLeave={setReveal.bind(this, null)}
-            className={reveal === designId && "revealed"}
+            className={reveal === designId ? "revealed" : undefined}
           >
             <div className="name" style={reveal === designId ? {left: offset.x + 16 + 6, top: offset.y + 32 + 6} : undefined}>{designNames[designId.toString()]}</div>
           </li>

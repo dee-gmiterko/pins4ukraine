@@ -10,7 +10,8 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 const HorizontalSpacing = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  padding-top: 150px;
+  padding-bottom: 6rem;
   .tap-it-container {
     width: 70%;
   }
@@ -18,7 +19,6 @@ const HorizontalSpacing = styled.div`
     width: 30%;
     max-width: 350px;
     margin-left: 3rem;
-    margin-top: 5rem;
   }
   @media(max-width: 900px) {
     flex-wrap: wrap;
@@ -41,7 +41,7 @@ const LargeLogo = styled.div`
   }
 `;
 
-const IndexPage = ({ data: { site }, pageContext }) => {
+const IndexPage = ({ data: { site } }) => {
   const [tapIt, setTapIt] = useState(false);
 
   return (
@@ -49,7 +49,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
       <HorizontalSpacing>
         <main className="tap-it-container">
           <LargeLogo>
-            <Link to="/">
+            <Link to="/story">
               <img src={logo} alt={ site.siteMetadata.title } />
             </Link>
           </LargeLogo>
@@ -64,7 +64,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
 
             <div className="tap-it-back">
               <p className="text-uppercase text-italic">
-                100% of your support goes to ukraine! <AnchorLink to="/story#100-percent">See how</AnchorLink>
+                100% of your support goes to ukraine! <AnchorLink to="/story#faq">See how</AnchorLink>
               </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ const IndexPage = ({ data: { site }, pageContext }) => {
             </Link>
             <Link to="/story">
               <button className="btn">
-                The Story
+                Read More
               </button>
             </Link>
           </div>
@@ -104,6 +104,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
+        twitter
+        email
+        opensea_collection
       }
     }
   }

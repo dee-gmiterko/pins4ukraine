@@ -27,8 +27,13 @@ const Slide = styled.div`
 const DesignName = styled.div`
   color: #fff;
   padding: 1rem;
+  font-family: "Trueno", sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.2rem;
   // wahcky graphics
   background: linear-gradient(to right, #666 0%, #fff 50%, #666 100%);
+  background-attachment: fixed;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;

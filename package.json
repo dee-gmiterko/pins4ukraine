@@ -19,6 +19,8 @@
     "sc-local-configure": "npx hardhat run --network local scripts/configure.js",
     "sc-ropsten-deploy": "npx hardhat run --network ropsten scripts/deploy.js",
     "sc-ropsten-configure": "npx hardhat run --network ropsten scripts/configure.js",
+    "sc-rinkeby-deploy": "npx hardhat run --network rinkeby scripts/deploy.js",
+    "sc-rinkeby-configure": "npx hardhat run --network rinkeby scripts/configure.js",
     "sc-mainnet-deploy": "npx hardhat run --network mainnet scripts/deploy.js",
     "sc-mainnet-configure": "npx hardhat run --network mainnet scripts/configure.js"
   },
@@ -30,9 +32,6 @@
   "dependencies": {
     "@ethersproject/providers": "^5.5.2",
     "@ethersproject/units": "^5.5.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.16",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/network-connector": "^6.2.9",

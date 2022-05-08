@@ -13,11 +13,11 @@ const HorizontalSpacing = styled.div`
   align-items: stretch;
   min-height: 100%;
   .content-free {
-    width: 70%;
-    justify-content: space-around;
+    width: 60%;
+    padding: 6rem 0;
   }
-  .receipt-box {
-    width: 30%;
+  .receipt-container {
+    width: 40%;
     margin-left: 3rem
   }
   @media(max-width: 900px) {
@@ -35,16 +35,16 @@ const SuccessHeading = styled.h2`
 
 const MintedHeading = styled.h2`
   font-size: 2.3rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.6);
 `;
 
 const ThanksHeading = styled.h2`
   font-size: 2.3rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.6);
   text-align: center;
 `;
 
-const MintSuccessPage = ({ data: { site }, pageContext }) => {
+const MintSuccessPage = ({ data: { site } }) => {
   const {contract, design, rewardDeserved} = useMinter();
 
   return (
@@ -86,20 +86,22 @@ const MintSuccessPage = ({ data: { site }, pageContext }) => {
           <p>And don't forget to bring your pin to the virtual worlds further down the line ;)</p>
         </main>
 
-        <main className="receipt-box">
+        <div className="receipt-container">
+          <main className="receipt-box">
 
-          <MintedHeading>you just minted:</MintedHeading>
+            <MintedHeading>you just minted:</MintedHeading>
 
-          <Receipt />
+            <Receipt />
 
-          {rewardDeserved && (
-            <Link to={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
-              <img src={`/assets/${design}.png`} alt={designNames[design]} />
-            </Link>
-          )}
+            {rewardDeserved && (
+              <Link to={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
+                <img src={`/assets/${design}.png`} alt={designNames[design]} />
+              </Link>
+            )}
 
-          <ThanksHeading>Thanks for your support!</ThanksHeading>
-        </main>
+            <ThanksHeading>Thanks for your support!</ThanksHeading>
+          </main>
+        </div>
 
       </HorizontalSpacing>
     </Layout>
@@ -117,7 +119,10 @@ export const pageQuery = graphql`
         siteUrl
         title
         keywords
+        instagram
         twitter
+        email
+        opensea_collection
       }
     }
   }

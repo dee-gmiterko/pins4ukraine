@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/Layout/Layout";
 
-const NotFoundPage = ({ data, pageContext }) => (
+const NotFoundPage = ({ data }) => (
   <Layout title={"Not Found"} siteMetadata={data.site.siteMetadata}>
     <h1>Page not found</h1>
   </Layout>

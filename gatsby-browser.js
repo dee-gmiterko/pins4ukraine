@@ -33,10 +33,14 @@ export const wrapRootElement = ({ element }) => {
 
 export const wrapPageElement = ({ element, props: {path} }) => {
   return (
-    <TransitionGroup>
-      <CSSTransition key={path} timeout={300} classNames="navigate">
-        {element}
-      </CSSTransition>
-    </TransitionGroup>
+    <>
+      <div className={path.startsWith("/story") ? "bg-playful visible" : "bg-playful"} />
+      <div className={path.startsWith("/mint") ? "bg-dark visible" : "bg-dark"} />
+      <TransitionGroup>
+        <CSSTransition key={path} timeout={300} classNames="navigate">
+          {element}
+        </CSSTransition>
+      </TransitionGroup>
+    </>
   );
 }
