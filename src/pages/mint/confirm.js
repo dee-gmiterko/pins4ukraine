@@ -81,7 +81,7 @@ const MintConfirmPage = ({ data: { site } }) => {
                 Go Back
               </button>
             </Link>
-            <button className="btn primary" onClick={mint} disabled={!active}>
+            <button className="btn primary mint-btn" onClick={mint} disabled={!active}>
               Mint
             </button>
           </div>

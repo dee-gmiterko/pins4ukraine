@@ -80,7 +80,7 @@ const Step1Amount = () => {
           </MobileBlock>
         </ActionPrompt>
         <p>
-          You have to donate at least <RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo> to get a pin.
+          You need to donate at least <RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo> to get a pin.
           <br />
           Time until the price rises by {tokenPriceIncrease && ethers.utils.formatEther(tokenPriceIncrease)} ETH:
           <br />

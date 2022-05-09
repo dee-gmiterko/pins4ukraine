@@ -206,6 +206,9 @@
     .slick-slider {
       position: absolute;
       top: 0; right: 0; bottom: 0; left: 0;
+      .slick-list {
+        border-radius: 2.7rem;
+      }
 
       .slick-dots {
         bottom: 3rem;
@@ -383,6 +386,46 @@
       }
     }
   }
+
+  &.mint-btn {
+    background-color: $color-primary;
+    animation: pulse 1s ease-in-out;
+    animation-iteration-count: infinite;
+
+    &:hover {
+      animation: pulse 0.5s ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    &[disabled] {
+      background-color: $color-dark;
+      background-image: url(../images/lines.svg);
+      background-size: 50px 50px;
+      animation: scroll-backgorund-image 2s linear;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+@keyframes scroll-backgorund-image {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -5px;
+  }
+  100% {
+    top: 0;
+  }
 }
 
 .content-box-buttons {
@@ -507,7 +550,7 @@
       align-items: center;
       padding: 0.2rem 1.4rem;
       font-size: 1.8rem;
-      margin-top: 6px;
+      margin-top: 12px;
     }
   }
 
@@ -602,7 +645,7 @@
   .icon-btn {
     position: relative;
     border: $b-width solid $color-darker;
-    border-radius: 2rem;
+    border-radius: 2.6rem;
     background: $color-primary;
     width: 100%;
     padding-bottom: 40%;

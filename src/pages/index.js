@@ -70,14 +70,14 @@ const IndexPage = ({ data: { site } }) => {
           </div>
 
           <div className="content-box-buttons">
-            <Link to="/mint/amount">
-              <button className="btn primary">
-                Support & Mint
-              </button>
-            </Link>
             <Link to="/story">
               <button className="btn">
                 Read More
+              </button>
+            </Link>
+            <Link to="/mint/amount">
+              <button className="btn primary">
+                Support & Mint
               </button>
             </Link>
           </div>

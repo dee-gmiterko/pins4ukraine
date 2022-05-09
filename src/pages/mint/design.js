@@ -36,7 +36,7 @@ const MintDesignPage = ({ data: { site } }) => {
           </Link>
         </div>
         {rewardDeserved ? (
-          <ActionPrompt>Incredible! Now you can choose your reward.</ActionPrompt>
+          <ActionPrompt>You. Are. Just. Incredible! Choose away!</ActionPrompt>
         ) : (
           <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} ETH to get a pin.</ActionPrompt>
         )}

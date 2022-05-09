@@ -14,7 +14,7 @@ const MinterContext = createContext({});
 export const MinterProvider = ({ children }) => {
   const { library, chainId, active, error } = useWeb3React();
 
-  const provider = library ? library.getSigner() : new ethers.providers.JsonRpcProvider();
+  const provider = library ? library.getSigner() : new ethers.providers.AlchemyProvider("homestead", process.env.GATSBY_ALCHEMY_API_KEY);
   const contract = new ethers.Contract(process.env.GATSBY_SMART_CONTRACT, Pins4UkraineContract.abi, provider);
 
   const [loading, setLoading] = useState(true);

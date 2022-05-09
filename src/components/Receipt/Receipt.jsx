@@ -19,8 +19,6 @@ const HorizontalSpacing = styled.div`
 const Receipt = () => {
   const { amount, design, rewardDeserved, estimatedGasPrice, transactionReceipt } = useMinter();
 
-  console.log(estimatedGasPrice, transactionReceipt);
-
   const gasPrice = transactionReceipt ? (
     ethers.utils.formatEther(transactionReceipt.effectiveGasPrice).substring(0, 6)
   ) : (

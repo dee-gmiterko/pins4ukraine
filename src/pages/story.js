@@ -27,19 +27,19 @@ const ParagraphWallet = styled.p`
   text-align: center;
   font-weight: 700;
   font-size: 2rem;
-
+  padding: 4rem 0;
 `;
 
 const ImageBunch = styled.img`
   display: block;
   max-width: 100%;
-  margin: 6rem auto 0 auto;
+  margin: 12rem auto 6rem auto;
 `;
 
 const ImageTeam = styled.img`
   display: block;
   width: 100%;
-  margin: 3rem auto 0 auto;
+  margin: 3rem auto 3rem auto;
   border-radius: 0;
 `;
 
@@ -47,8 +47,12 @@ const Insignificant = styled.span`
   color: #527B87;
 `;
 
+const Contact = styled.div`
+  padding: 6rem 2rem 2rem 2rem;
+`;
+
 const Fuck = styled.span`
-  letter-spacing: 4px;
+  letter-spacing: 2px;
 `;
 
 const StoryPage = ({ data: { site }, location }) => {
@@ -93,9 +97,7 @@ const StoryPage = ({ data: { site }, location }) => {
           </div>
 
           <ImageBunch src={bunchImg} />
-        </main>
 
-        <main className="content-box mint">
           <div className="p2">
             <h2 id="who-are-we">Who are we?</h2>
 
@@ -113,10 +115,13 @@ const StoryPage = ({ data: { site }, location }) => {
             </ParagraphStory>
 
             <ImageTeam src={teamImg} />
-          </div>
-        </main>
 
-        <main className="content-box mint faq">
+            <ParagraphStory>
+              Since none of us knows how to hold a firearm, we decided to find another way to
+              help the bold Ukrainian
+            </ParagraphStory>
+          </div>
+
           <div className="p2">
             <h2 id="faq">FAQ</h2>
             <Accordion
@@ -323,10 +328,8 @@ const StoryPage = ({ data: { site }, location }) => {
 
             </Accordion>
           </div>
-        </main>
 
-        <main className="content-box mint">
-          <div className="p2">
+          <Contact>
             <h2 id="contact">Get in touch with US!</h2>
             <ParagraphStory>
               Because we'd be honored to get to know you better and answer any burning questions!
@@ -353,16 +356,18 @@ const StoryPage = ({ data: { site }, location }) => {
                 </button>
               </a>
             </div>
+          </Contact>
+
+          <div className="content-box-buttons p2">
+            <Link to="/mint/amount">
+              <button className="btn primary">
+                Support & Mint
+              </button>
+            </Link>
           </div>
         </main>
 
-        <div className="content-free-buttons p2">
-          <Link to="/mint/amount">
-            <button className="btn primary">
-              Support & Mint
-            </button>
-          </Link>
-        </div>
+
       </>
     </Layout>
   )

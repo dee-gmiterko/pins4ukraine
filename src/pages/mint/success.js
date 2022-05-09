@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
+import logo from "../../images/logo.svg";
 import Layout from "../../components/Layout/Layout";
 import Receipt from "../../components/Receipt/Receipt";
 import styled from 'styled-components';
@@ -84,6 +85,12 @@ const MintSuccessPage = ({ data: { site } }) => {
           </div>
 
           <p>And don't forget to bring your pin to the virtual worlds further down the line ;)</p>
+
+          <div className="logo">
+            <Link to="/">
+              <img src={logo} alt={ site.siteMetadata.title } />
+            </Link>
+          </div>
         </main>
 
         <div className="receipt-container">
