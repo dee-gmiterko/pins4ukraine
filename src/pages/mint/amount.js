@@ -5,6 +5,12 @@ import Layout from "../../components/Layout/Layout";
 import Step1Amount from "../../components/Step1Amount/Step1Amount";
 import useMinter from "../../hooks/useMinter";
 import {ethers} from "ethers";
+import styled from 'styled-components';
+
+const ProceedButton = styled.button`
+  padding-left: 6rem !important;
+  padding-right: 6rem !important;
+`;
 
 const MintAmountPage = ({ data: { site } }) => {
   const { amount } = useMinter();
@@ -21,7 +27,7 @@ const MintAmountPage = ({ data: { site } }) => {
 
   return (
     <Layout title="Support" siteMetadata={site.siteMetadata}>
-      <main className="content-box mint">
+      <main className="content-free">
         <div className="logo">
           <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
@@ -30,11 +36,16 @@ const MintAmountPage = ({ data: { site } }) => {
         <div className="p2">
           <Step1Amount />
         </div>
-        <div className="content-box-buttons">
-          <Link to="/mint/design">
-            <button className="btn primary" disabled={!canParseAmount}>
-              Proceed
+        <div className="content-free-buttons">
+          <Link to="/">
+            <button className="btn">
+              Go back
             </button>
+          </Link>
+          <Link to="/mint/design">
+            <ProceedButton className="btn primary" disabled={!canParseAmount}>
+              Proceed
+            </ProceedButton>
           </Link>
         </div>
       </main>

@@ -7,7 +7,7 @@ import Countdown from 'react-countdown';
 import moment from "moment";
 
 const ActionPrompt = styled.p`
-  color: #fff;
+  color: #fff !important;
   font-size: 4rem;
   font-weight: 900;
   @media(max-width: 700px) {

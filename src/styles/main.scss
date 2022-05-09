@@ -82,6 +82,8 @@
   &.mint-confirm {
     padding: 2rem 4rem;
     min-width: auto;
+    margin-top: 24px;
+    margin-bottom: 0;
   }
 }
 
@@ -223,9 +225,9 @@
 
 .design-pick-box {
   position: relative;
-  background: $color-dark;
+  background: $color-darker;
   border-radius: 3rem;
-  border: $b-width solid $color-dark;
+  border: $b-width solid $color-darker;
 
   .design-pick-container {
     width: 100%;
@@ -276,10 +278,8 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &.success {
-    p {
-      color: #fff;
-    }
+  p {
+    color: $color-dark-text;
   }
 
   .logo {
@@ -412,10 +412,19 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin: 2rem 0;
 
   > a, button {
-    margin: 0 2rem;
+    margin: 0 0.5rem;
+  }
+
+  .btn {
+    border: $b-width solid $color-darker;
+
+    &::before {
+      background: $color-darker;
+      border: $b-width solid $color-darker;
+    }
   }
 }
 
@@ -483,7 +492,7 @@
   .connectors {
     flex-grow: 1;
     margin-right: 4rem;
-    padding: 2rem 0;
+    padding: 1rem 0 2rem 0;
 
     display: flex;
     flex-direction: column;
@@ -497,7 +506,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.2rem 1.4rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
+      margin-top: 6px;
     }
   }
 

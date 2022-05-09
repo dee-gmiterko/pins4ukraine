@@ -53,7 +53,7 @@ const AllDesignSlider = () => {
                 <ProductViewer
                   imagesBaseUrl={`/assets/${designId}`}
                   imagesCount={16}
-                  imagesFiletype="png"
+                  imagesFiletype="webp"
                 />
               </div>
               <DesignName>

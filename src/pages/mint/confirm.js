@@ -12,7 +12,7 @@ import designNames from "../../designNames.json";
 const HorizontalSpacing = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   .design-pick-box {
     width: 30%;

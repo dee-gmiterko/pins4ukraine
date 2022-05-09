@@ -30,7 +30,7 @@ const Step2Design = () => {
             <ProductViewer
               imagesBaseUrl={`/assets/${designId}`}
               imagesCount={16}
-              imagesFiletype="png"
+              imagesFiletype="webp"
             />
             {designNames[designId.toString()]}
           </button>

@@ -8,7 +8,7 @@ import useMinter from "../../hooks/useMinter";
 import styled from 'styled-components';
 
 const ActionPrompt = styled.p`
-  color: #fff;
+  color: #fff !important;
   font-size: 2.5rem;
   font-weight: 900;
   margin-top: 3rem;
