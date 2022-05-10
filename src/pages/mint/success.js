@@ -126,42 +126,44 @@ const MintSuccessPage = ({ data: { site } }) => {
           </div>
         </main>
 
-        <div className="receipt-container">
-          <main className="receipt-box">
+        {transaction && (
+          <div className="receipt-container">
+            <main className="receipt-box">
 
-            <MintedHeading>you just minted:</MintedHeading>
+              <MintedHeading>you just minted:</MintedHeading>
 
-            <Receipt />
+              <Receipt />
 
-            {transactionReceipt ? (
-              <>
-                {rewardDeserved && (
-                  <a href={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
-                    <div className="design-pick-container">
-                      <video autoPlay muted loop>
-                        <source src={`/assets/${design}.mp4`} type="video/mp4" />
-                        <img src={`/assets/${design}.png`} alt={designNames[design]} />
-                      </video>
-                    </div>
-                  </a>
-                )}
+              {transactionReceipt ? (
+                <>
+                  {rewardDeserved && (
+                    <a href={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
+                      <div className="design-pick-container">
+                        <video autoPlay muted loop>
+                          <source src={`/assets/${design}.mp4`} type="video/mp4" />
+                          <img src={`/assets/${design}.png`} alt={designNames[design]} />
+                        </video>
+                      </div>
+                    </a>
+                  )}
 
-                <ThanksHeading>Thanks for your support!</ThanksHeading>
-              </>
-            ) : (
-              <>
-                <Spinner />
-                <p className="confirmation">
-                  Waiting for transaction<br/>
-                  <a href={`https://etherscan.io/tx/${transaction.hash}`} className="reward">
-                    {transaction.hash.substring(0, 10)}...{transaction.hash.substring(transaction.hash.length-10  , transaction.hash.length)}
-                  </a><br/>
-                  confirmation...
-                </p>
-              </>
-            )}
-          </main>
-        </div>
+                  <ThanksHeading>Thanks for your support!</ThanksHeading>
+                </>
+              ) : (
+                <>
+                  <Spinner />
+                  <p className="confirmation">
+                    Waiting for transaction<br/>
+                    <a href={`https://etherscan.io/tx/${transaction.hash}`} className="reward">
+                      {transaction.hash.substring(0, 10)}...{transaction.hash.substring(transaction.hash.length-10  , transaction.hash.length)}
+                    </a><br/>
+                    confirmation...
+                  </p>
+                </>
+              )}
+            </main>
+          </div>
+        )}
 
       </HorizontalSpacing>
     </Layout>

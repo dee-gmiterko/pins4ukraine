@@ -18,6 +18,8 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
 
     constructor() ERC1155("https://pins4ukraine.com/assets") {}
 
+    // Support
+
     function mint(uint256 _tokenId) external payable {
         require(block.timestamp >= MINT_OPEN_SINCE, "Minting not open yet");
         require(block.timestamp < MINT_OPEN_UNTIL, "Minting already closed");
@@ -35,6 +37,20 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
     receive() external payable {
         // allows to directly send funds to this contract
     }
+
+    function transferSupport() external {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No balance to transfer");
+        payable(UKRAINE_ADDRESS).transfer(balance);
+    }
+
+    function transferSupportERC20(IERC20 _token) external {
+        uint256 balance = _token.balanceOf(address(this));
+        require(balance > 0, "No balance to transfer");
+        _token.safeTransfer(UKRAINE_ADDRESS, balance);
+    }
+
+    // Utils
 
     function tokenPriceAt(uint256 time) external pure returns (uint256) {
         require(time >= MINT_OPEN_SINCE, "Minting not open yet");
@@ -55,18 +71,6 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
         uint256 price = 1e16 * p;
 
         return price;
-    }
-
-    function transferSupport() external {
-        uint256 balance = address(this).balance;
-        require(balance > 0, "No balance to transfer");
-        payable(UKRAINE_ADDRESS).transfer(balance);
-    }
-
-    function transferSupportERC20(IERC20 _token) external {
-        uint256 balance = _token.balanceOf(address(this));
-        require(balance > 0, "No balance to transfer");
-        _token.safeTransfer(UKRAINE_ADDRESS, balance);
     }
 
     // Metadata
