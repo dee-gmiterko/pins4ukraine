@@ -10,7 +10,7 @@ async function main() {
           "image": `https://pins4ukraine.com/assets/${tokenId}.png`,
           "animation_url": `https://pins4ukraine.com/assets/${tokenId}.mp4`,
           "name": designNames[tokenId],
-          "description": "",
+          "description": "Pins for Ukraine is an NFT project designed to help Ukraine in the war against Russia. As effectively as possible.",
           "attributes": [
             {
               "trait_type": "Design",

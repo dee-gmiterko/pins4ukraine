@@ -15,14 +15,11 @@
     "sc-compile": "npx hardhat compile",
     "sc-test": "npx hardhat test",
     "sc-node": "npx hardhat node",
-    "sc-local-deploy": "npx hardhat run --network local scripts/deploy-configure.js",
-    "sc-local-configure": "npx hardhat run --network local scripts/configure.js",
+    "sc-local-deploy": "npx hardhat run --network local scripts/deploy.js",
     "sc-ropsten-deploy": "npx hardhat run --network ropsten scripts/deploy.js",
-    "sc-ropsten-configure": "npx hardhat run --network ropsten scripts/configure.js",
     "sc-rinkeby-deploy": "npx hardhat run --network rinkeby scripts/deploy.js",
-    "sc-rinkeby-configure": "npx hardhat run --network rinkeby scripts/configure.js",
     "sc-mainnet-deploy": "npx hardhat run --network mainnet scripts/deploy.js",
-    "sc-mainnet-configure": "npx hardhat run --network mainnet scripts/configure.js"
+    "sc-mainnet-transfer-support": "npx hardhat run --network mainnet scripts/transfer-support.js"
   },
   "keywords": [
     "gatsby",
