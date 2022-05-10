@@ -8,12 +8,13 @@ async function main() {
     Object.keys(designNames).forEach(tokenId => {
         const content = {
           "image": `https://pins4ukraine.com/assets/${tokenId}.png`,
+          "animation_url": `https://pins4ukraine.com/assets/${tokenId}.mp4`,
           "name": designNames[tokenId],
           "description": "",
           "attributes": [
             {
               "trait_type": "Design",
-              "value": tokenId,
+              "value": designNames[tokenId],
             },
           ]
         }

@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import logo from "../images/logo.svg";
 import bunchImg from "../images/bunch.jpg";
 import teamImg from "../images/team.jpg";
+import priceChartImg from "../images/price-chart.svg";
 import Layout from "../components/Layout/Layout";
 import styled from 'styled-components';
 import useMinter from "../hooks/useMinter";
@@ -40,7 +41,12 @@ const ImageTeam = styled.img`
   display: block;
   width: 100%;
   margin: 3rem auto 3rem auto;
-  border-radius: 0;
+`;
+
+const ImagePriceChart = styled.img`
+  display: block;
+  width: 100%;
+  margin: 1rem auto 1rem auto;
 `;
 
 const Insignificant = styled.span`
@@ -117,8 +123,10 @@ const StoryPage = ({ data: { site }, location }) => {
             <ImageTeam src={teamImg} />
 
             <ParagraphStory>
-              Since none of us knows how to hold a firearm, we decided to find another way to
-              help the bold Ukrainian
+              So that's the three of us. Dominik was probably born to deploy smart contracts
+              and solve any weird math problems we throw at him. I, Vojtech, am trying real
+              hard not to be too perfectionist about my 3D renders and Lukas is the one who
+              manages the team and keeps our heads attached to our necks.
             </ParagraphStory>
           </div>
 
@@ -196,10 +204,36 @@ const StoryPage = ({ data: { site }, location }) => {
                   </ParagraphStory>
                   <ParagraphStory>
                     But we also want to reward our holders for donating as soon as possible. And
-                    thanks to this format, you can get pins that will be eventually worth, e.g., 2
+                    thanks to this format, you can get pins that will be eventually worth, e.g., 0.5
                     ETH, yet you got them for just a fraction of that. Even better, Ukraine will be
                     able to sooner utilize your support. That's what we call killing two birds with
                     one stone!
+                  </ParagraphStory>
+                  <ParagraphStory>
+                    The price development follows an exponential curve. That means it gets steeper
+                    over time and those who decide to send support the earliest can have a lot
+                    cheaper pins.
+                  </ParagraphStory>
+                  <ParagraphStory>
+                    We start at 0.01 ETH per pin and stay there for the first 7 weeks. Then the
+                    price starts to gradually increase — 13 weeks in (half of the minting period),
+                    the price gets to 0.07 ETH. From there you quickly get to 0.5 ETH within the
+                    next 13 weeks.
+                  </ParagraphStory>
+                  <ParagraphStory>
+                    It's like buying bitcoin — the earlier you get in, the cheaper you have it.
+                  </ParagraphStory>
+
+                  <ImagePriceChart src={priceChartImg} />
+
+                  <ParagraphStory>
+                    A yellow dot is where a new week and a new price start. The first week started
+                    on May 9th of 2022 and the mint will be ended at the beginning of the 26th week.
+                  </ParagraphStory>
+                  <ParagraphStory>
+                    The dots don't follow the curve exactly because we wanted you to get a pin e.g.
+                    0.05 ETH instead of something like 0.05137889 ETH. If you're a geek, you can
+                    check exactly how the curve works.
                   </ParagraphStory>
                 </AccordionItemPanel>
               </AccordionItem>
