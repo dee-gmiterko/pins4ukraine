@@ -14,7 +14,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 80%;
+  width: 100%;
 `;
 
 const AnimationImage = ({ src, isVisible }) => {

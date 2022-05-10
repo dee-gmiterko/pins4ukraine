@@ -215,12 +215,16 @@
       }
 
       .product-background {
-        /* TODO remove */
-        background: url(../images/design-background.png);
-        background-size: cover;
-        background-position: center;
-        border-radius: 2rem;
         width: 100%;
+        padding-bottom: 125%;
+        position: relative;
+
+        img, video {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 2.8rem;
+        }
       }
     }
   }
@@ -234,14 +238,14 @@
 
   .design-pick-container {
     width: 100%;
-    /* TODO remove */
-    background: url(../images/design-background.png);
-    background-size: cover;
-    background-position: center;
-    border-radius: 2rem;
+    padding-bottom: 125%;
+    position: relative;
 
-    img {
+    img, video {
+      position: absolute;
       width: 100%;
+      height: 100%;
+      border-radius: 2.8rem;
     }
   }
 }
@@ -265,12 +269,21 @@
     .reward {
       padding: 2rem;
       cursor: pointer;
+      margin: 0 auto;
+      width: 70%;
 
-      img {
+      .design-pick-container {
+        width: 100%;
         display: block;
-        max-width: 80%;
         border: 1px solid #ddd;
-        margin: 0 auto;
+        padding-bottom: 125%;
+        position: relative;
+
+        img, video {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

@@ -4,40 +4,44 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract Pins4Ukraine is ERC1155, IERC2981, Ownable {
+contract Pins4Ukraine is ERC1155, IERC2981 {
     using Strings for uint256;
     using SafeERC20 for IERC20;
 
     address constant UKRAINE_ADDRESS = 0x165CD37b4C644C2921454429E7F9358d18A45e14;
-    uint256 constant TOKEN_PRICE_INITIAL = 0.04 ether;
-    uint256 constant TOKEN_PRICE_INCREASE = 0.01 ether;
-    uint256 constant INCREASE_RATE = 259200; // 3 days
-    uint256 constant ROYALTY = 5; // 5%
+    uint256 constant MINT_OPEN_SINCE = 1652054400; // Mon May 09 2022 00:00:00 UTC
+    uint256 constant MINT_OPEN_UNTIL = 1667779200; // Mon Nov 07 2022 00:00:00 UTC
+    uint256 constant ROYALTY = 5; //%
     uint256 constant DESIGNS = 6;
-
-    uint256 public mintOpenSince = 0;
-    uint256 public mintOpenUntil = 0;
 
     constructor() ERC1155("https://pins4ukraine.com/assets") {}
 
-    function currentTokenPrice() public view returns (uint256) {
-        require(block.timestamp >= mintOpenSince, "Minting not open yet");
+    function tokenPriceAt(uint256 time) public view returns (uint256) {
+        require(time >= MINT_OPEN_SINCE, "Minting not open yet");
+        require(time < MINT_OPEN_UNTIL, "Minting already closed");
 
-        uint256 relativeTime = block.timestamp - mintOpenSince;
-        uint256 increases = relativeTime / INCREASE_RATE;
-        return increases * TOKEN_PRICE_INCREASE;
+        uint256 ONE_WEEK = 604800;
+
+        uint256 t = block.timestamp - MINT_OPEN_SINCE; // seconds
+        uint256 w = t / ONE_WEEK; // 0-25
+        uint256 w3 = w ** 3; // 0-17576
+        uint256 p = (w3 * 50) / 17576; // 0-50
+        if (p < 1) {
+          p = 1; // 1-50
+        }
+        uint256 price = 1e16 * p;
+
+        return price;
     }
 
     function mint(uint256 _tokenId) external payable {
-        require(mintOpenSince > 0, "Mint not configured");
-        require(block.timestamp >= mintOpenSince, "Minting not open yet");
-        require(mintOpenUntil == 0 || block.timestamp < mintOpenUntil, "Minting was closed already");
+        require(block.timestamp >= MINT_OPEN_SINCE, "Minting not open yet");
+        require(block.timestamp < MINT_OPEN_UNTIL, "Minting already closed");
         require(_tokenId >= 1, "This design isn't avalaible");
         require(_tokenId <= DESIGNS, "This design isn't avalaible");
-        require(msg.value >= currentTokenPrice(), "Not enought value to mint, please use plain transfer");
+        require(msg.value >= tokenPriceAt(block.timestamp), "Not enought value to mint, please use plain transfer");
 
         _mint(msg.sender, _tokenId, 1, "");
     }
@@ -81,15 +85,5 @@ contract Pins4Ukraine is ERC1155, IERC2981, Ownable {
             _interfaceId == type(IERC2981).interfaceId ||
             super.supportsInterface(_interfaceId)
         );
-    }
-
-    // Admin
-
-    function setMintOpenSince(uint256 _mintOpenSince) external onlyOwner {
-        mintOpenSince = _mintOpenSince;
-    }
-
-    function setMintOpenUntil(uint256 _mintOpenUntil) external onlyOwner {
-        mintOpenUntil = _mintOpenUntil;
     }
 }

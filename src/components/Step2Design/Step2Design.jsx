@@ -29,7 +29,7 @@ const Step2Design = () => {
           >
             <ProductViewer
               imagesBaseUrl={`/assets/${designId}`}
-              imagesCount={16}
+              imagesCount={20}
               imagesFiletype="webp"
             />
             {designNames[designId.toString()]}

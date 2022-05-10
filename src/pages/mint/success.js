@@ -102,7 +102,12 @@ const MintSuccessPage = ({ data: { site } }) => {
 
             {rewardDeserved && (
               <Link to={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
-                <img src={`/assets/${design}.png`} alt={designNames[design]} />
+                <div className="design-pick-container">
+                  <video autoPlay muted loop>
+                    <source src={`/assets/${design}.mp4`} type="video/mp4" />
+                    <img src={`/assets/${design}.png`} alt={designNames[design]} />
+                  </video>
+                </div>
               </Link>
             )}
 

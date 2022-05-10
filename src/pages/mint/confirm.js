@@ -62,7 +62,10 @@ const MintConfirmPage = ({ data: { site } }) => {
         {rewardDeserved && (
           <div className="design-pick-box">
             <div className="design-pick-container">
-              <img src={`/assets/${design}.png`} alt={designNames[design]} />
+              <video autoPlay muted loop>
+                <source src={`/assets/${design}.mp4`} type="video/mp4" />
+                <img src={`/assets/${design}.png`} alt={designNames[design]} />
+              </video>
             </div>
             <LogoGreatPick>
               <img src={confirmGreatPickImg} alt="Great pick!" />

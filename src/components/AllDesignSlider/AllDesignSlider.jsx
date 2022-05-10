@@ -1,22 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
-import ProductViewer from "../ProductViewer/ProductViewer";
 import styled from 'styled-components';
 import Slider from "react-slick";
 import useMinter from "../../hooks/useMinter";
 import designNames from "../../designNames.json";
-
-var settings = {
-  infinite: true,
-  speed: 500,
-  autoplay: false,
-  autoplaySpeed: 2000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  dots: true,
-};
 
 const Slide = styled.div`
   display: flex;
@@ -43,18 +31,34 @@ const AllDesignSlider = () => {
 
   const designIds = firstOpenDesign > 0 && lastOpenDesign > 0 && Array.from({ length: lastOpenDesign }, (_, i) => i+1) || [];
 
+  const sliderRef = useRef();
+
+  var settings = {
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 4500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    afterChange: (index) => {
+      const activeSlideVideo = sliderRef.current.querySelector(".slick-slide.slick-current video");
+      activeSlideVideo.play();
+    }
+  };
+
   return (
-    <div className="all-design-slider">
+    <div className="all-design-slider" ref={(element) => sliderRef.current = element}>
       <Slider {...settings}>
         {designIds.map((designId, index) => (
           <div key={index}>
             <Slide>
               <div className="product-background">
-                <ProductViewer
-                  imagesBaseUrl={`/assets/${designId}`}
-                  imagesCount={16}
-                  imagesFiletype="webp"
-                />
+                <video muted>
+                  <source src={`/assets/${designId}.mp4`} type="video/mp4" />
+                  <img src={`/assets/${designId}.png`} alt={designNames[designId]} />
+                </video>
               </div>
               <DesignName>
                 {designNames[designId.toString()]}
