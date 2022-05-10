@@ -27,9 +27,9 @@ const DesignName = styled.div`
 `;
 
 const AllDesignSlider = () => {
-  const { design, setDesign, firstOpenDesign, lastOpenDesign, rewardDeserved } = useMinter();
+  const { design, setDesign, totalDesigns, rewardDeserved } = useMinter();
 
-  const designIds = firstOpenDesign > 0 && lastOpenDesign > 0 && Array.from({ length: lastOpenDesign }, (_, i) => i+1) || [];
+  const designIds = Array.from({ length: totalDesigns }, (_, i) => i+1) || [];
 
   const sliderRef = useRef();
 
@@ -44,7 +44,9 @@ const AllDesignSlider = () => {
     dots: true,
     afterChange: (index) => {
       const activeSlideVideo = sliderRef.current.querySelector(".slick-slide.slick-current video");
-      activeSlideVideo.play();
+      if(activeSlideVideo) {
+        activeSlideVideo.play();
+      }
     }
   };
 

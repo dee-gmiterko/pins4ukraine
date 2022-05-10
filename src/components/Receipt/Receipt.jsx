@@ -19,14 +19,8 @@ const HorizontalSpacing = styled.div`
 const Receipt = () => {
   const { amount, design, rewardDeserved, estimatedGasPrice, transactionReceipt } = useMinter();
 
-  const gasPrice = transactionReceipt ? (
-    ethers.utils.formatEther(transactionReceipt.effectiveGasPrice).substring(0, 6)
-  ) : (
-    <>
-      <span title="estimated to be">~ </span>
-      {ethers.utils.formatEther(estimatedGasPrice).substring(0, 6)}
-    </>
-  );
+  const gasPrice = transactionReceipt ? (transactionReceipt.effectiveGasPrice) : (estimatedGasPrice);
+  const estimateElement = transactionReceipt ? <></> : <span title="estimated to be">~ </span>
 
   return (
     <dl className="receipt">
@@ -50,15 +44,14 @@ const Receipt = () => {
       <HorizontalSpacing>
         <dt>Gas price</dt>
         <dd>
-          {gasPrice} ETH
+          {estimateElement} {ethers.utils.formatEther(gasPrice).substring(0, 6)} ETH
         </dd>
       </HorizontalSpacing>
       <hr />
       <HorizontalSpacing>
         <dt>Total</dt>
         <dd>
-          <span alt="About">~ </span>
-          {amount && ethers.utils.formatEther(ethers.utils.parseEther(amount).add(estimatedGasPrice)).substring(0, 6)} ETH
+          {estimateElement} {amount && ethers.utils.formatEther(ethers.utils.parseEther(amount).add(gasPrice)).substring(0, 6)} ETH
         </dd>
       </HorizontalSpacing>
     </dl>

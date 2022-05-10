@@ -45,8 +45,41 @@ const ThanksHeading = styled.h2`
   text-align: center;
 `;
 
+const Spinner = styled.div`
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+
+  &, &:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+  }
+
+  @keyframes load8 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 const MintSuccessPage = ({ data: { site } }) => {
-  const {contract, design, rewardDeserved} = useMinter();
+  const { contract, design, rewardDeserved, transaction, transactionReceipt } = useMinter();
 
   return (
     <Layout title="Mint success" siteMetadata={site.siteMetadata}>
@@ -100,18 +133,33 @@ const MintSuccessPage = ({ data: { site } }) => {
 
             <Receipt />
 
-            {rewardDeserved && (
-              <Link to={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
-                <div className="design-pick-container">
-                  <video autoPlay muted loop>
-                    <source src={`/assets/${design}.mp4`} type="video/mp4" />
-                    <img src={`/assets/${design}.png`} alt={designNames[design]} />
-                  </video>
-                </div>
-              </Link>
-            )}
+            {transactionReceipt ? (
+              <>
+                {rewardDeserved && (
+                  <a href={`https://opensea.io/assets/${contract.address}/${design}`} className="reward">
+                    <div className="design-pick-container">
+                      <video autoPlay muted loop>
+                        <source src={`/assets/${design}.mp4`} type="video/mp4" />
+                        <img src={`/assets/${design}.png`} alt={designNames[design]} />
+                      </video>
+                    </div>
+                  </a>
+                )}
 
-            <ThanksHeading>Thanks for your support!</ThanksHeading>
+                <ThanksHeading>Thanks for your support!</ThanksHeading>
+              </>
+            ) : (
+              <>
+                <Spinner />
+                <p className="confirmation">
+                  Waiting for transaction<br/>
+                  <a href={`https://etherscan.io/tx/${transaction.hash}`} className="reward">
+                    {transaction.hash.substring(0, 10)}...{transaction.hash.substring(transaction.hash.length-10  , transaction.hash.length)}
+                  </a><br/>
+                  confirmation...
+                </p>
+              </>
+            )}
           </main>
         </div>
 

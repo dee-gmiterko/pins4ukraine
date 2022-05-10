@@ -13,11 +13,11 @@ function shuffleArray(arr) {
 }
 
 const NameMatchingMinigame = () => {
-  const { lastOpenDesign } = useMinter();
+  const { totalDesigns } = useMinter();
   const [reveal, setReveal] = useState(null);
   const [offset, setOffset] = useState(0);
 
-  const designIds = lastOpenDesign > 0 && Array.from({ length: lastOpenDesign }, (_, i) => i+1) || [];
+  const designIds = Array.from({ length: totalDesigns }, (_, i) => i+1) || [];
   const designIdsShuffled = shuffleArray(designIds);
 
   const namesEls = useRef({});

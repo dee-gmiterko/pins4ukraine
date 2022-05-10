@@ -8,9 +8,9 @@ import useMinter from "../../hooks/useMinter";
 import designNames from "../../designNames.json";
 
 const Step2Design = () => {
-  const { design, setDesign, firstOpenDesign, lastOpenDesign, rewardDeserved } = useMinter();
+  const { design, setDesign, totalDesigns, rewardDeserved } = useMinter();
 
-  const designIds = firstOpenDesign > 0 && lastOpenDesign > 0 && Array.from({ length: lastOpenDesign - firstOpenDesign + 1 }, (_, i) => i+1) || [];
+  const designIds = Array.from({ length: totalDesigns }, (_, i) => i+1) || [];
 
   const setDesignNavigate = (designId) => {
     setDesign(designId);
