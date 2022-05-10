@@ -18,30 +18,12 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
 
     constructor() ERC1155("https://pins4ukraine.com/assets") {}
 
-    function tokenPriceAt(uint256 time) public view returns (uint256) {
-        require(time >= MINT_OPEN_SINCE, "Minting not open yet");
-        require(time < MINT_OPEN_UNTIL, "Minting already closed");
-
-        uint256 ONE_WEEK = 604800;
-
-        uint256 t = block.timestamp - MINT_OPEN_SINCE; // seconds
-        uint256 w = t / ONE_WEEK; // 0-25
-        uint256 w3 = w ** 3; // 0-17576
-        uint256 p = (w3 * 50) / 17576; // 0-50
-        if (p < 1) {
-          p = 1; // 1-50
-        }
-        uint256 price = 1e16 * p;
-
-        return price;
-    }
-
     function mint(uint256 _tokenId) external payable {
         require(block.timestamp >= MINT_OPEN_SINCE, "Minting not open yet");
         require(block.timestamp < MINT_OPEN_UNTIL, "Minting already closed");
         require(_tokenId >= 1, "This design isn't avalaible");
         require(_tokenId <= DESIGNS, "This design isn't avalaible");
-        require(msg.value >= tokenPriceAt(block.timestamp), "Not enought value to mint, please use plain transfer");
+        require(msg.value >= _tokenPriceAt(block.timestamp), "Not enought value to mint, please use plain transfer");
 
         _mint(msg.sender, _tokenId, 1, "");
     }
@@ -52,6 +34,27 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
 
     receive() external payable {
         // allows to directly send funds to this contract
+    }
+
+    function tokenPriceAt(uint256 time) external pure returns (uint256) {
+        require(time >= MINT_OPEN_SINCE, "Minting not open yet");
+        require(time < MINT_OPEN_UNTIL, "Minting already closed");
+        return _tokenPriceAt(time);
+    }
+
+    function _tokenPriceAt(uint256 time) internal pure returns (uint256) {
+        uint256 ONE_WEEK = 604800;
+
+        uint256 t = time - MINT_OPEN_SINCE; // seconds
+        uint256 w = (t / ONE_WEEK)+1; // 1-26
+        uint256 w3 = w ** 3; // 1-17576
+        uint256 p = (w3 * 50) / 17576; // 0-50
+        if (p < 1) {
+          p = 1; // 1-50
+        }
+        uint256 price = 1e16 * p;
+
+        return price;
     }
 
     function transferSupport() external {
