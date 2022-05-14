@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "gatsby";
 import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import styled from 'styled-components';
@@ -80,11 +81,11 @@ const Step1Amount = () => {
           </MobileBlock>
         </ActionPrompt>
         <p>
-          You need to donate at least <RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo> to get a pin.
+          You need to donate at least <Link to="/story" state={{ expandFaq: 'why-does-the-price-of-the-pins-keep-rising' }}><RelevantInfo>{tokenPrice && ethers.utils.formatEther(tokenPrice)}</RelevantInfo></Link> to get a pin.
           <br />
           Time until the price rises by {tokenPriceIncrease && ethers.utils.formatEther(tokenPriceIncrease)} ETH:
           <br />
-          <RelevantInfo>{countdown}</RelevantInfo>
+          <Link to="/story" state={{ expandFaq: 'why-does-the-price-of-the-pins-keep-rising' }}><RelevantInfo>{countdown}</RelevantInfo></Link>
         </p>
       </div>
   );

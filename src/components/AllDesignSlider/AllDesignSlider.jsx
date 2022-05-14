@@ -19,11 +19,6 @@ const DesignName = styled.div`
   font-style: italic;
   font-weight: normal;
   font-size: 1.2rem;
-  // wahcky graphics
-  background: linear-gradient(to right, #666 0%, #fff 50%, #666 100%);
-  background-attachment: fixed;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 `;
 
 const AllDesignSlider = () => {
@@ -32,22 +27,27 @@ const AllDesignSlider = () => {
   const designIds = Array.from({ length: totalDesigns }, (_, i) => i+1) || [];
 
   const sliderRef = useRef();
+  const playActiveSlide = () => {
+    const activeSlideVideo = sliderRef.current.querySelector(".slick-slide.slick-current video");
+    if(activeSlideVideo) {
+      activeSlideVideo.play();
+    }
+  }
 
   var settings = {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 4500,
+    autoplaySpeed: 3333,
+    pauseOnHover: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     dots: true,
-    afterChange: (index) => {
-      const activeSlideVideo = sliderRef.current.querySelector(".slick-slide.slick-current video");
-      if(activeSlideVideo) {
-        activeSlideVideo.play();
-      }
-    }
+    afterChange: playActiveSlide,
+    onInit: () => {
+      setTimeout(playActiveSlide)
+    },
   };
 
   return (
@@ -57,7 +57,7 @@ const AllDesignSlider = () => {
           <div key={index}>
             <Slide>
               <div className="product-background">
-                <video muted>
+                <video muted="muted">
                   <source src={`/assets/${designId}.mp4`} type="video/mp4" />
                   <img src={`/assets/${designId}.png`} alt={designNames[designId]} />
                 </video>

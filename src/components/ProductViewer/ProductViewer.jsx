@@ -48,12 +48,11 @@ const ProductViewer = ({
     setCurrentMousePosition(e.clientX);
   };
 
-  let selectedImageIndex = Math.floor(imagesCount / 2);
+  let selectedImageIndex = 19;
   if (elementRef.current && currentMousePosition > 0) {
     const boundingBox = elementRef.current.getBoundingClientRect();
-    selectedImageIndex = Math.min(imagesCount-1,
-      (imagesCount-1) - Math.floor( ((currentMousePosition - boundingBox.x) / boundingBox.width) * imagesCount )
-    );
+    const imageIndex = Math.floor( ((currentMousePosition - boundingBox.x) / boundingBox.width) * imagesCount );
+    selectedImageIndex = (imagesCount-1) - Math.min(imagesCount-1, Math.max(0, imageIndex));
   }
 
   return (

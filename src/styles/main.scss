@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:color';
 @import './variables.scss';
 
 .header {
@@ -56,9 +57,22 @@
     border-radius: 3rem;
     border: $b-width solid $color-dark;
     z-index: -1;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   }
 
   &.mint {
+    background: $color-darker;
+    border-color: $color-dark;
+    color: $color-dark-text;
+    margin-top: (200px * 0.63 * 0.7) + 10px;
+
+    &::before {
+      background: $color-dark;
+      border-color: $color-dark;
+    }
+  }
+
+  &.story {
     background: $color-dark;
     border-color: $color-darker;
     color: $color-dark-text;
@@ -67,15 +81,6 @@
     &::before {
       background: $color-darker;
       border-color: $color-darker;
-    }
-
-    .btn {
-      border: $b-width solid $color-darker;
-
-      &::before {
-        background: $color-darker;
-        border: $b-width solid $color-darker;
-      }
     }
   }
 
@@ -102,6 +107,7 @@
     font-weight: 900;
     cursor: pointer;
     overflow: hidden;
+    box-shadow: 0 -10px 80px rgba(0, 0, 0, 0.66);
 
     display: flex;
     flex-direction: column;
@@ -143,14 +149,13 @@
       content: "";
       position: absolute;
       top: -1 * $b-width + 25px; right: -1 * $b-width; bottom: -2 * $b-width; left: -1 * $b-width;
-      padding: 8rem 4rem;
 
       background: white;
       color: $color-dark;
       border-radius: 3rem;
       border: $b-width solid $color-dark;
 
-      padding: 8rem 2rem;
+      padding: 8rem 4rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -199,15 +204,23 @@
   background: $color-dark;
   border-radius: 3rem;
   border: $b-width solid $color-dark;
+  box-shadow: 0 -5px 80px rgba(0, 0, 0, 0.66);
 
   .slider-container {
     padding-bottom: calc(125% + 3rem);
 
     .slick-slider {
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0; right: -5px; bottom: 0; left: -5px;
+
       .slick-list {
         border-radius: 2.7rem;
+
+        .slick-slide {
+          border-left: 5px solid $color-dark;
+          border-right: 5px solid $color-dark;
+          box-sizing: border-box;
+        }
       }
 
       .slick-dots {
@@ -226,15 +239,27 @@
           border-radius: 2.8rem;
         }
       }
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: 50px;
+        right: 0; bottom: 0; left: 0;
+        background: red;
+        border-bottom-right-radius: 2.5rem;
+        border-bottom-left-radius: 2.5rem;
+        background: linear-gradient(90deg, $color-dark 10%, color.adjust($color-dark, $alpha: -1) 50%, $color-dark 90%);
+      }
     }
   }
 }
 
 .design-pick-box {
   position: relative;
-  background: $color-darker;
+  background: $color-dark;
   border-radius: 3rem;
-  border: $b-width solid $color-darker;
+  border: $b-width solid $color-dark;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 
   .design-pick-container {
     width: 100%;
@@ -245,7 +270,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 2.8rem;
+      border-radius: 2.5rem;
     }
   }
 }
@@ -253,6 +278,7 @@
 .receipt-container {
   background: $color-darker;
   min-height: 100vh;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 
   .receipt-box {
     display: flex;
@@ -321,16 +347,15 @@
   a {
     display: block;
     position: relative;
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.06);
-      transform-origin: top center;
-    }
 
     img {
       width: 200px;
       margin-top: (200px * 0.63 * -0.7) - 16px;
+      transition: transform 100ms linear;
+
+      &:hover {
+        transform: scale(1.06);
+      }
     }
   }
 
@@ -411,12 +436,12 @@
     animation-iteration-count: infinite;
 
     &:hover {
-      animation: pulse 0.5s ease-in-out;
+      animation: pulse 1s ease-in-out;
       animation-iteration-count: infinite;
     }
 
     &[disabled] {
-      background-color: $color-dark;
+      background-color: $color-darker;
       background-image: url(../images/lines.svg);
       background-size: 50px 50px;
       animation: scroll-backgorund-image 2s linear;
@@ -549,6 +574,7 @@
 .confirm {
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   .connectors {
     flex-grow: 1;
@@ -569,6 +595,16 @@
       padding: 0.2rem 1.4rem;
       font-size: 1.8rem;
       margin-top: 12px;
+      border-color: $color-dark;
+
+      &::before {
+        background-color: $color-dark;
+        border-color: $color-dark;
+      }
+
+      img {
+        margin-top: 5px;
+      }
     }
   }
 
@@ -576,6 +612,8 @@
     font-size: 1.2rem;
     font-style: italic;
     font-weight: 700;
+    line-height: 2rem;
+    text-transform: uppercase;
   }
 }
 

@@ -5,7 +5,6 @@ import tapItPrompt from "../images/tap-it-prompt.svg";
 import Layout from "../components/Layout/Layout";
 import AllDesignSlider from "../components/AllDesignSlider/AllDesignSlider";
 import styled from "styled-components";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const HorizontalSpacing = styled.div`
   display: flex;
@@ -64,7 +63,7 @@ const IndexPage = ({ data: { site } }) => {
 
             <div className="tap-it-back">
               <p className="text-uppercase text-italic">
-                100% of your support goes to ukraine! <AnchorLink to="/story#faq">See how</AnchorLink>
+                100% of your support goes to ukraine! <Link to="/story" state={{ expandFaq: 'where-does-my-eth-go' }}>See how</Link>
               </p>
             </div>
           </div>

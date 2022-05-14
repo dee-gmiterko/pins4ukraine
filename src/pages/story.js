@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { graphql, Link } from "gatsby";
-import logo from "../images/logo.svg";
+import logo from "../images/logo-small.svg";
 import bunchImg from "../images/bunch.jpg";
 import teamImg from "../images/team.jpg";
 import priceChartImg from "../images/price-chart.svg";
@@ -8,13 +8,14 @@ import Layout from "../components/Layout/Layout";
 import styled from 'styled-components';
 import useMinter from "../hooks/useMinter";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { scroller } from "gatsby-plugin-anchor-links/utils";
 import {
     Accordion,
     AccordionItem,
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from 'react-accessible-accordion';
+  } from 'react-accessible-accordion';
 import NameMatchingMinigame from "../components/NameMatchingMinigame/NameMatchingMinigame";
 
 const ParagraphStory = styled.p`
@@ -45,8 +46,8 @@ const ImageTeam = styled.img`
 
 const ImagePriceChart = styled.img`
   display: block;
-  width: 100%;
-  margin: 1rem auto 1rem auto;
+  width: 80%;
+  margin: 5rem auto 5rem auto;
 `;
 
 const Insignificant = styled.span`
@@ -61,13 +62,43 @@ const Fuck = styled.span`
   letter-spacing: 2px;
 `;
 
+var navigateExpandTimeout;
+
 const StoryPage = ({ data: { site }, location }) => {
   const { contract } = useMinter();
+
+  useEffect(() => {
+    const expandFaq = location?.state?.expandFaq;
+    const resetNavigateExpandTimeout = (callback, timeout) => {
+      if(navigateExpandTimeout) {
+        clearTimeout(navigateExpandTimeout);
+      }
+      navigateExpandTimeout = setTimeout(callback, timeout);
+    }
+    const idSelector = `#accordion__heading-${expandFaq}`;
+    const sectionHeading = window.document.querySelector(idSelector);
+    if (sectionHeading) {
+      const navigate = () => {
+        scroller(
+          idSelector,
+          window.gatsby_scroll_offset,
+          window.gatsby_scroll_duration
+        );
+        if(sectionHeading.attributes["aria-expanded"].value != "true") {
+          resetNavigateExpandTimeout(expand, 1100);
+        }
+      }
+      const expand = () => {
+        sectionHeading.click();
+      }
+      resetNavigateExpandTimeout(navigate, 500);
+    }
+  }, [location])
 
   return (
     <Layout title="Story" siteMetadata={site.siteMetadata}>
       <>
-        <main className="content-box mint story">
+        <main className="content-box story">
           <div className="logo">
             <Link to="/">
               <img src={logo} alt={ site.siteMetadata.title } />
@@ -135,7 +166,6 @@ const StoryPage = ({ data: { site }, location }) => {
             <Accordion
               allowMultipleExpanded={true}
               allowZeroExpanded={true}
-              preExpanded={location.hash === "#faq" ? ["100-percent"] : undefined}
             >
 
               <AccordionItem>
@@ -155,7 +185,7 @@ const StoryPage = ({ data: { site }, location }) => {
                 </AccordionItemPanel>
               </AccordionItem>
 
-              <AccordionItem uuid="100-percent">
+              <AccordionItem uuid="where-does-my-eth-go">
                 <AccordionItemHeading>
                   <AccordionItemButton>WHERE DOES MY ETH GO?</AccordionItemButton>
                 </AccordionItemHeading>
@@ -192,7 +222,7 @@ const StoryPage = ({ data: { site }, location }) => {
                 </AccordionItemPanel>
               </AccordionItem>
 
-              <AccordionItem>
+              <AccordionItem uuid="why-does-the-price-of-the-pins-keep-rising">
                 <AccordionItemHeading>
                   <AccordionItemButton>WHY DOES THE PRICE OF THE PINS KEEP RISING?</AccordionItemButton>
                 </AccordionItemHeading>
@@ -250,7 +280,7 @@ const StoryPage = ({ data: { site }, location }) => {
                   <ParagraphStory>
                     Each of the 6 motives is open to your interpretation and imagination. Although
                     we named all of the pieces to hint at our initial thoughts. You can try to
-                    assign the names to the jewels yourself:
+                    solve the puzzle for us:
                   </ParagraphStory>
                   <NameMatchingMinigame />
                 </AccordionItemPanel>
@@ -280,8 +310,8 @@ const StoryPage = ({ data: { site }, location }) => {
                   <ParagraphStory>
                     Don't worry. If you input less ETH than the amount needed to get a pin, 100% of
                     your funds will still get to the ETH address of the Ministry of Digital
-                    Transformation of Ukraine (see above). You will just not get rewarded an NFT
-                    pin.
+                    Transformation of Ukraine (<Link to="/story#accordion__heading-where-does-my-eth-go" state={{ expandFaq: 'where-does-my-eth-go' }}>see above</Link>).
+                    You will just not get rewarded NFT pin.
                   </ParagraphStory>
                 </AccordionItemPanel>
               </AccordionItem>

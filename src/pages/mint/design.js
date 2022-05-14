@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { graphql, Link, navigate } from "gatsby";
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo-small.svg";
 import { ethers } from 'ethers';
 import Layout from "../../components/Layout/Layout";
 import Step2Design from "../../components/Step2Design/Step2Design";
@@ -41,7 +41,15 @@ const MintDesignPage = ({ data: { site } }) => {
           <ActionPrompt>You need to increase the amount by {ethers.utils.formatEther(missingToReward)} ETH to get a pin.</ActionPrompt>
         )}
         <Step2Design />
-        {!rewardDeserved && (
+        {rewardDeserved ? (
+          <div className="content-free-buttons">
+            <Link to="/">
+              <button className="btn">
+                Go back
+              </button>
+            </Link>
+          </div>
+        ) : (
           <div className="content-free-buttons">
             <button className="btn primary" onClick={matchReward}>
               Add {ethers.utils.formatEther(missingToReward)} ETH

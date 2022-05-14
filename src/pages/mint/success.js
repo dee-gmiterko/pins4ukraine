@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo-small.svg";
 import Layout from "../../components/Layout/Layout";
 import Receipt from "../../components/Receipt/Receipt";
 import styled from 'styled-components';
@@ -29,9 +29,14 @@ const HorizontalSpacing = styled.div`
   }
 `;
 
+const SuccessParagraph = styled.p`
+  color: #fff !important;
+`;
+
 const SuccessHeading = styled.h2`
   text-align: center;
   font-size: 3.2rem;
+  text-transform: none !important;
 `;
 
 const MintedHeading = styled.h2`
@@ -87,12 +92,12 @@ const MintSuccessPage = ({ data: { site } }) => {
         <main className="content-free success">
           <SuccessHeading>WHOA! You've just proven yourself a bona fide hero!</SuccessHeading>
 
-          <p>I mean, we can't be sure but you might just have saved someone's life! You badass motherf...</p>
-          <p>Be sure to share your reward among your friends so we can get even more help to where it's needed.</p>
+          <SuccessParagraph>I mean, we can't be sure but you might just have saved someone's life! You badass motherf...</SuccessParagraph>
+          <SuccessParagraph>Be sure to share your reward among your friends so we can get even more help to where it's needed.</SuccessParagraph>
 
           <div className="icon-btn-list simple">
             <TwitterShareButton
-              url={`pins4ukraine.com/assets/${design}.png`}
+              url={`https://pins4ukraine.com/assets/${design}.gif`}
               title={"I supported Ukraine and got this NFT pin"}
               related={[site.siteMetadata.twitter]}
             >
@@ -102,7 +107,7 @@ const MintSuccessPage = ({ data: { site } }) => {
             </TwitterShareButton>
 
             <FacebookShareButton
-              url={`pins4ukraine.com/assets/${design}.png`}
+              url={`https://pins4ukraine.com/assets/${design}.gif`}
               quote={"I supported Ukraine and got this NFT pin"}
             >
               <div className="icon-btn">
@@ -117,7 +122,7 @@ const MintSuccessPage = ({ data: { site } }) => {
             </a>
           </div>
 
-          <p>And don't forget to bring your pin to the virtual worlds further down the line ;)</p>
+          <SuccessParagraph>And don't forget to bring your pin to the virtual worlds further down the line ;)</SuccessParagraph>
 
           <div className="logo">
             <Link to="/">

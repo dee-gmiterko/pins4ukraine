@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo-small.svg";
 import Layout from "../../components/Layout/Layout";
 import Step1Amount from "../../components/Step1Amount/Step1Amount";
 import useMinter from "../../hooks/useMinter";
