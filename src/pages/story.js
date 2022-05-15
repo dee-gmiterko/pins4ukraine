@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { graphql, Link } from "gatsby";
 import logo from "../images/logo-small.svg";
-import bunchImg from "../images/bunch.jpg";
 import teamImg from "../images/team.jpg";
 import priceChartImg from "../images/price-chart.svg";
 import Layout from "../components/Layout/Layout";
@@ -30,12 +29,6 @@ const ParagraphWallet = styled.p`
   font-weight: 700;
   font-size: 2rem;
   padding: 4rem 0;
-`;
-
-const ImageBunch = styled.img`
-  display: block;
-  max-width: 100%;
-  margin: 12rem auto 6rem auto;
 `;
 
 const ImageTeam = styled.img`
@@ -133,7 +126,9 @@ const StoryPage = ({ data: { site }, location }) => {
             </AnchorLink>
           </div>
 
-          <ImageBunch src={bunchImg} />
+          <div className="img-bunch-container">
+            <div className="img-bunch" />
+          </div>
 
           <div className="p2">
             <h2 id="who-are-we">Who are we?</h2>

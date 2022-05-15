@@ -43,7 +43,7 @@ const MintDesignPage = ({ data: { site } }) => {
         <Step2Design />
         {rewardDeserved ? (
           <div className="content-free-buttons">
-            <Link to="/">
+            <Link to="/mint/amount">
               <button className="btn">
                 Go back
               </button>

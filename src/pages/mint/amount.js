@@ -29,7 +29,7 @@ const MintAmountPage = ({ data: { site } }) => {
     <Layout title="Support" siteMetadata={site.siteMetadata}>
       <main className="content-free">
         <div className="logo">
-          <Link to="/story">
+          <Link to="/">
             <img src={logo} alt={ site.siteMetadata.title } />
           </Link>
         </div>
