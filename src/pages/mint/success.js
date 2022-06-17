@@ -22,9 +22,18 @@ const HorizontalSpacing = styled.div`
     margin-left: 3rem
   }
   @media(max-width: 900px) {
+    padding: 1rem;
+    padding-top: 150px;
     flex-direction: column-reverse;
-    main {
+    .content-free {
       width: 100%;
+      margin-bottom: 1rem;
+    }
+    .receipt-container {
+      width: 100%;
+      margin-left: 0;
+      max-width: none;
+      box-sizing: border-box;
     }
   }
 `;

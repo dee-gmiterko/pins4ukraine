@@ -22,9 +22,15 @@ const HorizontalSpacing = styled.div`
     width: 70%;
   }
   @media(max-width: 900px) {
-    flex-direction: column-reverse;
-    main {
+    padding: 1rem;
+    padding-top: 150px;
+    flex-direction: column;
+    .design-pick-box {
+      display: none;
+    }
+    .content-box {
       width: 100%;
+      margin-left: 0;
     }
   }
 `;
@@ -38,6 +44,13 @@ const LogoConnect = styled.div`
     width: 100%;
     max-width: 600px;
     margin-left: max(-50%, -300px);
+  }
+  @media(max-width: 900px) {
+    img {
+      top: -3rem;
+      max-width: 300px;
+      margin-left: max(-50%, -150px);
+    }
   }
 `;
 

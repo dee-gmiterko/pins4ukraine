@@ -22,6 +22,9 @@ const ParagraphStory = styled.p`
   font-weight: normal;
   font-size: 2rem;
   text-align: justify;
+  @media(max-width: 900px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ParagraphWallet = styled.p`
@@ -29,6 +32,10 @@ const ParagraphWallet = styled.p`
   font-weight: 700;
   font-size: 2rem;
   padding: 4rem 0;
+  @media(max-width: 900px) {
+    font-size: 0.9rem;
+    padding: 1rem 0;
+  }
 `;
 
 const ImageTeam = styled.img`
@@ -41,6 +48,9 @@ const ImagePriceChart = styled.img`
   display: block;
   width: 80%;
   margin: 5rem auto 5rem auto;
+  @media(max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const Insignificant = styled.span`

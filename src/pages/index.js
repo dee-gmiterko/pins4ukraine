@@ -20,9 +20,18 @@ const HorizontalSpacing = styled.div`
     margin-left: 3rem;
   }
   @media(max-width: 900px) {
-    flex-wrap: wrap;
-    main {
+    padding: 1rem;
+    padding-top: 150px;
+    flex-direction: column;
+    .tap-it-container {
       width: 100%;
+      margin-bottom: 1rem;
+    }
+    .slider-box {
+      width: 100%;
+      margin-left: 0;
+      max-width: none;
+      box-sizing: border-box;
     }
   }
 `;
@@ -37,6 +46,13 @@ const LargeLogo = styled.div`
     width: 100%;
     max-width: 300px;
     margin-left: -150px;
+  }
+  @media(max-width: 900px) {
+    img {
+      top: -60px;
+      max-width: 200px;
+      margin-left: -100px;
+    }
   }
 `;
 

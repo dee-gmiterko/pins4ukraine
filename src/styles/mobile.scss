@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:math';
 @import './variables.scss';
 
 @media(max-width: 900px) {
@@ -6,6 +7,7 @@
     font-family: "Trueno";
     font-weight: normal;
     font-size: 1.5rem;
+    line-height: 1.8rem;
   }
 
   h2 {
@@ -26,7 +28,6 @@
     margin-top: 0;
     margin-bottom: 0;
     padding: 1rem;
-    background: rgba(256, 256, 256, 0.8);
     border-radius: 0;
     border: 0;
 
@@ -47,6 +48,24 @@
       margin-top: 0;
       background-color: color.scale($color-dark, $alpha: -20%);
     }
+
+    &.mint-confirm {
+      padding: 0;
+    }
+
+    &.story {
+      .img-bunch-container {
+        margin: 0 -1rem;
+
+        .img-bunch {
+          margin: 6rem auto 2rem auto;
+        }
+      }
+
+      .content-box-buttons {
+        flex-direction: column;
+      }
+    }
   }
 
   .logo {
@@ -55,6 +74,44 @@
         margin-top: 0;
         width: 200px;
       }
+    }
+  }
+
+  .tap-it-container {
+    .tap-it-box {
+      padding: 2rem;
+
+      .tap-it-prompt {
+        left: 72px;
+        top: 30px;
+      }
+
+      .tap-it-back {
+        padding: 4rem 2rem;
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+
+      .tap-it-front {
+        padding: 4rem 2rem;
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+
+      &:hover {
+        .tap-it-prompt {
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .content-box-buttons {
+      position: relative;
+      bottom: 2rem;
     }
   }
 
@@ -67,7 +124,13 @@
   }
 
   .content-free-buttons {
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 4rem;
+
+    button {
+      width: 100%;
+    }
   }
 
   .no-flex-grow {
@@ -76,5 +139,39 @@
 
   .name-matching-minigame {
     display: none;
+  }
+
+  .accordion {
+    .accordion__button {
+      font-size: 1.5rem;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .icon-btn-list {
+
+    > a, > button {
+      margin: 0 0.2rem;
+    }
+
+    .icon-btn {
+      padding-bottom: 75%;
+    }
+  }
+
+  .confirm {
+    flex-direction: column;
+
+    .connectors {
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+
+  .btn.mint-btn {
+    margin-top: 2rem;
   }
 }

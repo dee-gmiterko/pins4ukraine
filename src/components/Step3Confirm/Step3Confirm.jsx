@@ -10,18 +10,6 @@ import useMinter from "../../hooks/useMinter";
 import designNames from "../../designNames.json";
 import styled from "styled-components";
 
-const HorizontalSpacing = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  @media(max-width: 700px) {
-    div {
-      width: 100%;
-    }
-  }
-`;
-
 const Step3Confirm = () => {
   const { connector, activate, deactivate, account, error } = useWeb3React();
   const { amount, design, rewardDeserved, estimatedGasPrice } = useMinter();
