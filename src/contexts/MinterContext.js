@@ -19,8 +19,8 @@ export const MinterProvider = ({ children }) => {
   const contract = new ethers.Contract(process.env.GATSBY_SMART_CONTRACT, Pins4UkraineContract.abi, provider);
 
   const totalDesigns = 6;
-  const mintOpenSince = BigNumber.from("1652054400"); // Mon May 09 2022 00:00:00 UTC
-  const mintOpenUntil = BigNumber.from("1667779200"); // Mon Nov 07 2022 00:00:00 UTC
+  const mintOpenSince = BigNumber.from("1656115200"); // Sat Jun 25 2022 00:00:00 UTC
+  const mintOpenUntil = BigNumber.from("1671840000"); // Sat Dec 24 2022 00:00:00 UTC
 
   const [tokenPrice, setTokenPrice] = useState(undefined);
   const [tokenPriceIncrease, setTokenPriceIncrease] = useState(undefined);

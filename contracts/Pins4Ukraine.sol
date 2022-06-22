@@ -11,8 +11,8 @@ contract Pins4Ukraine is ERC1155, IERC2981 {
     using SafeERC20 for IERC20;
 
     address constant UKRAINE_ADDRESS = 0x165CD37b4C644C2921454429E7F9358d18A45e14;
-    uint256 constant MINT_OPEN_SINCE = 1652054400; // Mon May 09 2022 00:00:00 UTC
-    uint256 constant MINT_OPEN_UNTIL = 1667779200; // Mon Nov 07 2022 00:00:00 UTC
+    uint256 constant MINT_OPEN_SINCE = 1656115200; // Sat Jun 25 2022 00:00:00 UTC
+    uint256 constant MINT_OPEN_UNTIL = 1671840000; // Sat Dec 24 2022 00:00:00 UTC
     uint256 constant ROYALTY = 5; //%
     uint256 constant DESIGNS = 6;
 
