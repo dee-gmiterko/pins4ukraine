@@ -60,7 +60,7 @@ export const MinterProvider = ({ children }) => {
       setTokenPrice(tokenPrice);
       setAmount(ethers.utils.formatEther(tokenPrice));
 
-      let nextWeek = time.div(ONE_WEEK).mul(ONE_WEEK).add(ONE_WEEK);
+      let nextWeek = time.sub(mintOpenSince).div(ONE_WEEK).mul(ONE_WEEK).add(ONE_WEEK).add(mintOpenSince);
       let nextPrice = tokenPriceAt(nextWeek);
       while (!nextPrice.gt(tokenPrice)) {
         nextWeek = nextWeek.add(ONE_WEEK);

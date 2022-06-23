@@ -268,7 +268,7 @@ const StoryPage = ({ data: { site }, location }) => {
                   <ParagraphStory>
                     The dots don't follow the curve exactly because we wanted you to get a pin e.g.
                     0.05 ETH instead of something like 0.05137889 ETH. If you're a geek, you can
-                    check exactly how the curve works.
+                    check exactly <a href="https://www.desmos.com/calculator/0icrsxcyrz" target="_blank">how the curve works</a>.
                   </ParagraphStory>
                 </AccordionItemPanel>
               </AccordionItem>
